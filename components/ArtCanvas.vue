@@ -6,6 +6,7 @@ function addShape({ target }) {
     y: target.getBoundingClientRect().y,
     bold: Math.random() > 0.92,
   })
+  pushHistory()
 }
 function createPath(x, y, bold) {
   return `
@@ -15,7 +16,24 @@ function createPath(x, y, bold) {
   // d = "M 25 1.5 a 23.5 23.5 0 0 0 -23.5 23.5 h 23.5 Z"
 }
 
+const index = ref(0)
+const history = shallowReactive([[]])
+function pushHistory() {
+  history.length = ++index.value
+  history.push(clone(shapes.value))
+}
+function undoHistory() {
+  shapes.value = clone(history[--index.value])
+}
+function redoHistory() {
+  shapes.value = clone(history[++index.value])
+}
+function clone(shapes) {
+  return shapes.map((s) => ({ ...s }))
+}
+
 const rotateCounter = ref(0)
+// TODO: abstract rotating logic to the parent
 function handleWheel(event) {
   if (event.wheelDeltaY > 0) {
     rotateCounter.value += 1
@@ -33,6 +51,12 @@ function handleWheel(event) {
     <path v-for="el in shapes" ref="tmp" fill="#229922" stroke="#123712" stroke-width="5"
       :d="createPath(el.x, el.y, el.bold)" @contextmenu.prevent="console.log('preventing')"/>
   </svg>
+
+  <div class="fixed top-3 left-0 right-0 text-center">
+    {{ rotateCounter }}
+    <button @click="undoHistory" :disabled="index <= 0" class="mr-2">Undo</button>
+    <button @click="redoHistory" :disabled="index >= history.length - 1">Redo</button>
+  </div>
 </template>
 
 <style>
