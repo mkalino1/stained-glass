@@ -1,75 +1,14 @@
-# Stained glass art creator
+# Online stained glass art creator
 
-Work in progress
+:construction: Work in progress :construction:
 
-## Setup
+Unleash your creativity and create stained glass arts. Share them with the world, rate them and browse the community's gems.
 
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Tech stack:
+- Nuxt
+- Vue.js
+- TailwindCSS
+- Cloudflare R2 blob storage
+- Cloudflare D1 SQL database
+- Cloudflare Workers
+- NuxtHub
