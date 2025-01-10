@@ -24,7 +24,8 @@ function buildShape(target: HTMLElement, shadow = false): Shape {
     y: targetY,
     angle: 90 * (rotateCounter.value % 4),
     path: buildPath(targetX, targetY, bloatMode.value),
-    opacity: shadow ? 0.3 : 0.8
+    opacity: shadow ? 0.3 : 0.8,
+    isShadow: shadow
   })
 }
 function buildPath(x: number, y: number, bloat: boolean) {
@@ -74,9 +75,12 @@ function onMouseover({ target }: Event) {
       <rect v-for="i in 4" @click="addShape" @mouseover="onMouseover" class="fixed" width="100" height="100"
         :x="110 * i" :y="110 * j" :fill="'#666'" />
     </template>
-    <path v-for="el in shapesToRender" ref="tmp" fill="#229922" stroke="#123712" stroke-width="5" :d="el.path"
-      @contextmenu.prevent="console.log('preventing')"
-      :style="{ 'transform-origin': `${el.x + 50}px ${el.y + 50}px`, transform: `rotate(${el.angle}deg)`, opacity: el.opacity }" />
+    <path v-for="el in shapesToRender" fill="#229922" stroke="#123712" stroke-width="5" :d="el.path"
+      @contextmenu.prevent="console.log('preventing')" :style="{
+        'transform-origin': `${el.x + 50}px ${el.y + 50}px`,
+        'transform': `rotate(${el.angle}deg)`, opacity: el.opacity,
+        'pointer-events': el.isShadow ? 'none' : 'auto'
+      }" />
   </svg>
   <div class="fixed top-3 left-0 right-0 text-center">
     {{ rotateCounter }}
