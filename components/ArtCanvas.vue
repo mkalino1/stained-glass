@@ -17,11 +17,13 @@ function addShape({ target }: Event) {
   pushHistory()
 }
 function buildShape(target: HTMLElement, shadow = false): Shape {
+  const targetX = Number(target.getAttribute("x"))
+  const targetY = Number(target.getAttribute("y"))
   return ({
-    x: target.getBoundingClientRect().x,
-    y: target.getBoundingClientRect().y,
+    x: targetX,
+    y: targetY,
     angle: 90 * (rotateCounter.value % 4),
-    path: buildPath(target.getBoundingClientRect().x, target.getBoundingClientRect().y, bloatMode.value),
+    path: buildPath(targetX, targetY, bloatMode.value),
     opacity: shadow ? 0.3 : 0.8
   })
 }
@@ -52,11 +54,14 @@ function clone(shapes: Shape[]) {
 const rotateCounter = ref(0)
 // TODO: abstract rotating logic to the parent
 function handleWheel(event: WheelEvent) {
-  rotateCounter.value += Number(event.deltaY < 0)
-  if (shadowShape.value) {
-    shadowShape.value.angle += 90 * (rotateCounter.value + Number(event.deltaY < 0) % 4)
-  }
+  rotateCounter.value += event.deltaY < 0 ? 1 : -1
 }
+
+watch(rotateCounter, () => {
+  if (shadowShape.value) {
+    shadowShape.value.angle = 90 * (rotateCounter.value % 4)
+  }
+})
 
 function onMouseover({ target }: Event) {
   shadowShape.value = buildShape(target as HTMLElement, true)
@@ -64,7 +69,7 @@ function onMouseover({ target }: Event) {
 </script>
 
 <template>
-  <svg class="fixed w-screen h-screen bg-gray-800" @wheel="handleWheel">
+  <svg class="w-[650px] h-[650px] bg-gray-800" @wheel="handleWheel">
     <template v-for="j in 4">
       <rect v-for="i in 4" @click="addShape" @mouseover="onMouseover" class="fixed" width="100" height="100"
         :x="110 * i" :y="110 * j" :fill="'#666'" />
@@ -80,10 +85,3 @@ function onMouseover({ target }: Event) {
     <button @click="redoHistory" :disabled="index >= history.length - 1">Redo</button>
   </div>
 </template>
-
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-}
-</style>
