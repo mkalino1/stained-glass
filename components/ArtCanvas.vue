@@ -1,36 +1,36 @@
 <script setup lang="ts">
 type Shape = {
-  x: number;
-  y: number;
+  column: number;
+  row: number;
   angle: number;
   path: string;
   opacity: number;
+  isShadow: boolean;
 };
 
 const shapes = ref<Shape[]>([])
 const shadowShape = ref<Shape | null>()
 const shapesToRender = computed(() => shadowShape.value ? [...shapes.value, shadowShape.value] : shapes.value)
 const bloatMode = ref(true)
+const resolution = ref(5)
 
-function addShape({ target }: Event) {
-  shapes.value.push(buildShape(target as HTMLElement))
+function addShape(column: number, row: number) {
+  shapes.value.push(buildShape(column, row))
   pushHistory()
 }
-function buildShape(target: HTMLElement, shadow = false): Shape {
-  const targetX = Number(target.getAttribute("x"))
-  const targetY = Number(target.getAttribute("y"))
+function buildShape(column: number, row: number, shadow = false): Shape {
   return ({
-    x: targetX,
-    y: targetY,
+    column: column,
+    row: row,
     angle: 90 * (rotateCounter.value % 4),
-    path: buildPath(targetX, targetY, bloatMode.value),
+    path: buildPath(bloatMode.value),
     opacity: shadow ? 0.3 : 0.8,
     isShadow: shadow
   })
 }
-function buildPath(x: number, y: number, bloat: boolean) {
+function buildPath(bloat: boolean) {
   return `
-      M ${x},${y}
+      M 0,0
       a 100 100 0 0 ${bloat ? 1 : 0} 100 100
       h -100 Z`
   // d = "M 25 1.5 a 23.5 23.5 0 0 0 -23.5 23.5 h 23.5 Z"
@@ -64,28 +64,35 @@ watch(rotateCounter, () => {
   }
 })
 
-function onMouseover({ target }: Event) {
-  shadowShape.value = buildShape(target as HTMLElement, true)
+function buildShadowShape(column: number, row: number) {
+  shadowShape.value = buildShape(column, row, true)
+}
+
+function shapesOnTile(column: number, row: number) {
+  return shapesToRender.value.filter((el) => el.column === column && el.row == row)
 }
 </script>
 
 <template>
-  <svg class="w-[650px] h-[650px] bg-gray-800" @wheel="handleWheel">
-    <template v-for="j in 4">
-      <rect v-for="i in 4" @click="addShape" @mouseover="onMouseover" class="fixed" width="100" height="100"
-        :x="110 * i" :y="110 * j" :fill="'#666'" />
+  <svg class="w-[750px] h-[750px] bg-gray-800" @wheel="handleWheel">
+    <template v-for="column in resolution">
+      <svg v-for="row in resolution" @mouseover="buildShadowShape(column, row)" :x="110 * row" :y="110 * column">
+        <rect @click="addShape(column, row)" class="fixed" width="100" height="100" :fill="'#66666620'" />
+        <path v-for="el in shapesOnTile(column, row)" fill="#229922" stroke="#123712" stroke-width="5" :d="el.path"
+          @contextmenu.prevent="console.log('preventing')" :style="{
+            'transform-origin': '50px 50px',
+            'transform': `rotate(${el.angle}deg)`,
+            'opacity': el.opacity,
+            'pointer-events': el.isShadow ? 'none' : 'auto'
+          }" />
+      </svg>
     </template>
-    <path v-for="el in shapesToRender" fill="#229922" stroke="#123712" stroke-width="5" :d="el.path"
-      @contextmenu.prevent="console.log('preventing')" :style="{
-        'transform-origin': `${el.x + 50}px ${el.y + 50}px`,
-        'transform': `rotate(${el.angle}deg)`, opacity: el.opacity,
-        'pointer-events': el.isShadow ? 'none' : 'auto'
-      }" />
   </svg>
-  <div class="fixed top-3 left-0 right-0 text-center">
+  <div class="fixed top-3 left-0 right-0 text-center flex gap-4 justify-center">
     {{ rotateCounter }}
     <input type="checkbox" v-model="bloatMode" />
     <button @click="undoHistory" :disabled="index <= 0" class="mr-2">Undo</button>
     <button @click="redoHistory" :disabled="index >= history.length - 1">Redo</button>
+    <input v-model.number="resolution" />
   </div>
 </template>
