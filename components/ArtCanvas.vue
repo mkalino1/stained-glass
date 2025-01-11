@@ -74,7 +74,7 @@ function shapesOnTile(column: number, row: number) {
 </script>
 
 <template>
-  <svg class="w-[750px] h-[750px] bg-gray-800" @wheel="handleWheel">
+  <svg class="bg-gray-800" @wheel="handleWheel" :width="110 * resolution + 220" :height="110 * resolution + 220">
     <template v-for="column in resolution">
       <svg v-for="row in resolution" @mouseover="buildShadowShape(column, row)" :x="110 * row" :y="110 * column">
         <rect @click="addShape(column, row)" class="fixed" width="100" height="100" :fill="'#66666620'" />
@@ -88,7 +88,7 @@ function shapesOnTile(column: number, row: number) {
       </svg>
     </template>
   </svg>
-  <div class="fixed top-3 left-0 right-0 text-center flex gap-4 justify-center">
+  <div class="fixed top-20 left-0 right-0 text-center flex gap-4 justify-center">
     {{ rotateCounter }}
     <input type="checkbox" v-model="bloatMode" />
     <button @click="undoHistory" :disabled="index <= 0" class="mr-2">Undo</button>

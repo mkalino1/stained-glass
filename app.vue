@@ -1,6 +1,13 @@
 <template>
-  <div class="min-h-screen flex flex-col justify-center items-center bg-slate-700">
+  <div class="min-h-screen">
     <NuxtRouteAnnouncer />
-    <ArtCanvas />
+    <NavBar />
+    <NuxtPage />
   </div>
 </template>
+
+<style>
+body {
+  @apply bg-slate-700
+}
+</style>
