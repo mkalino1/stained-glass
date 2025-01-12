@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center gap-8 mt-6">
     <ArtControls @redo-history="redoHistory" @undo-history="undoHistory" v-model:bloat-mode="bloatMode"
-      v-model:resolution="resolution" :history="history" :history-index="historyIndex" />
+      v-model:resolution="resolution" :can-undo="historyIndex <= 0" :can-redo="historyIndex >= history.length - 1" />
     <ArtCanvas @wheel="handleWheel" @add-shape="addShape" :shapes="shapes" :resolution="resolution"
       :bloat-mode="bloatMode" :rotation-counter="rotationCounter" />
   </div>
