@@ -5,4 +5,5 @@ type Shape = {
     path: string;
     opacity: number;
     isShadow: boolean;
+    color: string;
 };

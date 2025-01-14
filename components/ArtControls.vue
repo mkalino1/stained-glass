@@ -2,6 +2,7 @@
   <div class="flex gap-4 justify-center">
     <button @click="$emit('undoHistory')" :disabled="canUndo" class="mr-2">Undo</button>
     <button @click="$emit('redoHistory')" :disabled="canRedo">Redo</button>
+    <input type="color" v-model="color" />
     <input v-model.number="resolution" />
     <input type="checkbox" v-model="bloatMode" />
   </div>
@@ -12,4 +13,5 @@ defineProps<{ canUndo: boolean, canRedo: boolean }>()
 defineEmits<{ undoHistory: [], redoHistory: [] }>()
 const bloatMode = defineModel('bloatMode')
 const resolution = defineModel('resolution')
+const color = defineModel('color')
 </script>

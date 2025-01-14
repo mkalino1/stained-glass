@@ -1,11 +1,12 @@
-function buildShape(column: number, row: number, bloatMode = false, rotationCounter = 0, shadow = false,): Shape {
+function buildShape(column: number, row: number, bloatMode = false, rotationCounter = 0, color: string, shadow = false): Shape {
   return ({
     column: column,
     row: row,
     angle: 90 * (rotationCounter % 4),
     path: buildPath(bloatMode),
     opacity: shadow ? 0.3 : 0.8,
-    isShadow: shadow
+    isShadow: shadow,
+    color: color
   })
 }
 

@@ -1,9 +1,10 @@
 <template>
   <div class="flex flex-col items-center gap-8 mt-6">
     <ArtControls @redo-history="redoHistory" @undo-history="undoHistory" v-model:bloat-mode="bloatMode"
-      v-model:resolution="resolution" :can-undo="historyIndex <= 0" :can-redo="historyIndex >= history.length - 1" />
+      v-model:resolution="resolution" v-model:color="color" :can-undo="historyIndex <= 0"
+      :can-redo="historyIndex >= history.length - 1" />
     <ArtCanvas @wheel="handleWheel" @add-shape="addShape" :shapes="shapes" :resolution="resolution"
-      :bloat-mode="bloatMode" :rotation-counter="rotationCounter" />
+      :bloat-mode="bloatMode" :rotation-counter="rotationCounter" :color="color" />
   </div>
 </template>
 
@@ -11,7 +12,7 @@
 //Shapes
 const shapes = ref<Shape[]>([])
 function addShape(column: number, row: number) {
-  shapes.value.push(buildShape(column, row, bloatMode.value, rotationCounter.value))
+  shapes.value.push(buildShape(column, row, bloatMode.value, rotationCounter.value, color.value))
   pushHistory()
 }
 
@@ -41,4 +42,7 @@ const rotationCounter = ref(0)
 function handleWheel(event: WheelEvent) {
   rotationCounter.value += event.deltaY < 0 ? 1 : -1
 }
+
+//Color
+const color = ref('b0914d')
 </script>

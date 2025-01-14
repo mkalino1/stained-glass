@@ -3,7 +3,7 @@
     <template v-for="column in resolution">
       <svg v-for="row in resolution" @mouseover="buildShadowShape(column, row)" :x="110 * row" :y="110 * column">
         <rect @click="$emit('addShape', column, row)" class="fixed" width="100" height="100" :fill="'#66666620'" />
-        <path v-for="el in shapesOnTile(column, row)" fill="#229922" stroke="#123712" stroke-width="5" :d="el.path"
+        <path v-for="el in shapesOnTile(column, row)" :fill="el.color" stroke="#123712" stroke-width="5" :d="el.path"
           @contextmenu.prevent="console.log('preventing')" :style="{
             'transform-origin': '50px 50px',
             'transform': `rotate(${el.angle}deg)`,
@@ -16,11 +16,12 @@
 </template>
 
 <script setup lang="ts">
-const { shapes, rotationCounter, bloatMode } = defineProps<{
+const { shapes, rotationCounter, bloatMode, color } = defineProps<{
   shapes: Shape[],
   resolution: number,
   rotationCounter: number,
-  bloatMode: boolean
+  bloatMode: boolean,
+  color: string
 }>()
 defineEmits<{
   addShape: [column: number, row: number]
@@ -29,7 +30,7 @@ defineEmits<{
 const shadowShape = ref<Shape | null>()
 const shapesToRender = computed(() => shadowShape.value ? [...shapes, shadowShape.value] : shapes)
 function buildShadowShape(column: number, row: number) {
-  shadowShape.value = buildShape(column, row, bloatMode, rotationCounter, true)
+  shadowShape.value = buildShape(column, row, bloatMode, rotationCounter, color, true)
 }
 watch(() => rotationCounter, () => {
   if (shadowShape.value) {
