@@ -44,5 +44,5 @@ function handleWheel(event: WheelEvent) {
 }
 
 //Color
-const color = ref('b0914d')
+const color = ref('#b0914d')
 </script>

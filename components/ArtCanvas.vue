@@ -1,7 +1,8 @@
 <template>
   <svg :width="110 * resolution + 220" :height="110 * resolution + 220" class="bg-gray-800">
     <template v-for="column in resolution">
-      <svg v-for="row in resolution" @mouseover="buildShadowShape(column, row)" :x="110 * row" :y="110 * column">
+      <svg v-for="row in resolution" @mouseover="buildShadowShape(column, row)" @mouseleave="resetShadowShape()"
+        :x="110 * row" :y="110 * column">
         <rect @click="$emit('addShape', column, row)" class="fixed" width="100" height="100" :fill="'#66666620'" />
         <path v-for="el in shapesOnTile(column, row)" :fill="el.color" stroke="#123712" stroke-width="5" :d="el.path"
           @contextmenu.prevent="console.log('preventing')" :style="{
@@ -31,6 +32,9 @@ const shadowShape = ref<Shape | null>()
 const shapesToRender = computed(() => shadowShape.value ? [...shapes, shadowShape.value] : shapes)
 function buildShadowShape(column: number, row: number) {
   shadowShape.value = buildShape(column, row, bloatMode, rotationCounter, color, true)
+}
+function resetShadowShape() {
+  shadowShape.value = null
 }
 watch(() => rotationCounter, () => {
   if (shadowShape.value) {
