@@ -4,13 +4,7 @@
       <svg v-for="row in resolution" @mouseover="buildShadowShape(column, row)" @mouseleave="resetShadowShape()"
         :x="110 * row" :y="110 * column">
         <rect @click="$emit('addShape', column, row)" class="fixed" width="100" height="100" :fill="'#66666620'" />
-        <path v-for="el in shapesOnTile(column, row)" :fill="el.color" stroke="#123712" stroke-width="5" :d="el.path"
-          @contextmenu.prevent="console.log('preventing')" :style="{
-            'transform-origin': '50px 50px',
-            'transform': `rotate(${el.angle}deg)`,
-            'opacity': el.opacity,
-            'pointer-events': el.isShadow ? 'none' : 'auto'
-          }" />
+        <ShapeBase v-for="shape in shapesOnTile(column, row)" :shape="shape" />
       </svg>
     </template>
   </svg>
