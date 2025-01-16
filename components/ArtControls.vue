@@ -2,7 +2,7 @@
   <div class="flex gap-4 justify-center bg-slate-600 p-4">
     <button @click="$emit('undoHistory')" :disabled="canUndo" class="mr-2">Undo</button>
     <button @click="$emit('redoHistory')" :disabled="canRedo">Redo</button>
-    <input type="color" v-model="color" />
+    <ColorPicker v-model="color" />
     <input v-model.number="resolution" type="number" class="w-8 px-1 text-center" />
     <input type="checkbox" v-model="bloatMode" />
   </div>
