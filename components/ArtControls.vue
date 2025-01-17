@@ -1,10 +1,12 @@
 <template>
-  <div class="flex gap-4 justify-center bg-slate-600 p-4">
-    <button @click="$emit('undoHistory')" :disabled="canUndo" class="mr-2">Undo</button>
-    <button @click="$emit('redoHistory')" :disabled="canRedo">Redo</button>
-    <ColorPicker v-model="color" />
-    <input v-model.number="resolution" type="number" class="w-8 px-1 text-center" />
-    <input type="checkbox" v-model="bloatMode" />
+  <div>
+    <div class="flex gap-4 justify-center bg-slate-600 p-4 mb-2">
+      <button @click="$emit('undoHistory')" :disabled="canUndo" class="mr-2">Undo</button>
+      <button @click="$emit('redoHistory')" :disabled="canRedo">Redo</button>
+      <ColorPicker v-model="color" />
+      <input v-model.number="resolution" type="number" class="w-8 px-1 text-center" />
+    </div>
+    <ShapePicker v-model="bloatMode" />
   </div>
 </template>
 
