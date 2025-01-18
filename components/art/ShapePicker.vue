@@ -6,6 +6,9 @@
     <svg height="100" width="100">
       <Shape :shape="buildDisplayShape('arc')" @click="shapeName = 'arc'" />
     </svg>
+    <svg height="100" width="100">
+      <Shape :shape="buildDisplayShape('marquise')" @click="shapeName = 'marquise'" />
+    </svg>
   </div>
 </template>
 

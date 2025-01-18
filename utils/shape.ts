@@ -34,6 +34,11 @@ function buildPath(shapeName: string) {
         M 0,0
         a 100 100 0 0 1 100 100
         h -100 Z`
+    case 'marquise':
+      return `
+        M 0,0
+        a 100 100 0 0 1 100 100
+        a -100 -100 0 0 1 -100 -100 Z`
   }
   return ''
   // d = "M 25 1.5 a 23.5 23.5 0 0 0 -23.5 23.5 h 23.5 Z"
