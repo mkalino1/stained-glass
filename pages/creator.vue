@@ -17,7 +17,7 @@ function addShape(column: number, row: number) {
 }
 
 //Controls
-const shapeName = ref('moon')
+const shapeName = ref<ShapeName>('moon')
 const resolution = ref(5)
 const color = ref('#b0914d')
 

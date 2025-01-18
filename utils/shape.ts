@@ -1,16 +1,16 @@
-function buildShape(shapeName: string, column: number, row: number, color: string, rotationCounter = 0): Shape {
+function buildShape(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0): Shape {
   return buildShapeInternal(shapeName, column, row, color, rotationCounter)
 }
 
-function buildShadowShape(shapeName: string, column: number, row: number, color: string, rotationCounter = 0): Shape {
+function buildShadowShape(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0): Shape {
   return buildShapeInternal(shapeName, column, row, color, rotationCounter, true)
 }
 
-function buildDisplayShape(shapeName: string): Shape {
+function buildDisplayShape(shapeName: ShapeName): Shape {
   return buildShapeInternal(shapeName, 0, 0, '#336633')
 }
 
-function buildShapeInternal(shapeName: string, column: number, row: number, color: string, rotationCounter = 0, shadow = false): Shape {
+function buildShapeInternal(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0, shadow = false): Shape {
   return ({
     column: column,
     row: row,
@@ -22,7 +22,7 @@ function buildShapeInternal(shapeName: string, column: number, row: number, colo
   })
 }
 
-function buildPath(shapeName: string) {
+function buildPath(shapeName: ShapeName) {
   switch (shapeName) {
     case 'moon':
       return `
@@ -40,7 +40,6 @@ function buildPath(shapeName: string) {
         a 100 100 0 0 1 100 100
         a -100 -100 0 0 1 -100 -100 Z`
   }
-  return ''
   // d = "M 25 1.5 a 23.5 23.5 0 0 0 -23.5 23.5 h 23.5 Z"
 }
 

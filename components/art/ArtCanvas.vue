@@ -15,7 +15,7 @@ const { shapes, rotationCounter, shapeName, color } = defineProps<{
   shapes: Shape[],
   resolution: number,
   rotationCounter: number,
-  shapeName: string,
+  shapeName: ShapeName,
   color: string
 }>()
 defineEmits<{
