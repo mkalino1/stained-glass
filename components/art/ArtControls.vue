@@ -6,14 +6,14 @@
       <ColorPicker v-model="color" />
       <input v-model.number="resolution" type="number" class="w-8 px-1 text-center" />
     </div>
-    <ShapePicker v-model="bloatMode" />
+    <ShapePicker v-model="shapeName" />
   </div>
 </template>
 
 <script lang="ts" setup>
 defineProps<{ canUndo: boolean, canRedo: boolean }>()
 defineEmits<{ undoHistory: [], redoHistory: [] }>()
-const bloatMode = defineModel('bloatMode')
+const shapeName = defineModel('shapeName')
 const resolution = defineModel('resolution')
 const color = defineModel('color')
 </script>
