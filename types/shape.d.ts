@@ -6,4 +6,5 @@ type Shape = {
     opacity: number;
     isShadow: boolean;
     color: string;
+    collisionPoints: Set<CollisionPoint>;
 };

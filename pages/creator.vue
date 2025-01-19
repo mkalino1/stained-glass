@@ -9,11 +9,21 @@
 </template>
 
 <script lang="ts" setup>
+//TODO: fix broken auto import
+import { buildCollisionPoints } from '~/utils/shape'
+
 //Shapes
 const shapes = ref<Shape[]>([])
 function addShape(column: number, row: number) {
-  shapes.value.push(buildShape(shapeName.value, column, row, color.value, rotationCounter.value))
-  pushHistory()
+  if(!collisionDetected(column, row)) {
+    shapes.value.push(buildShape(shapeName.value, column, row, color.value, rotationCounter.value))
+    pushHistory()
+  }
+}
+function collisionDetected(column: number, row: number) {
+  const collisionPoints = buildCollisionPoints(shapeName.value)
+  const roommates = shapes.value.filter(el => el.row === row && el.column === column)
+  return roommates.some(shape => !collisionPoints.isDisjointFrom(shape.collisionPoints))
 }
 
 //Controls

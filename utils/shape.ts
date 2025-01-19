@@ -1,3 +1,6 @@
+//TODO: fix broken auto import
+import { CollisionPoint } from "./collisionPoint"
+
 function buildShape(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0): Shape {
   return buildShapeInternal(shapeName, column, row, color, rotationCounter)
 }
@@ -18,7 +21,8 @@ function buildShapeInternal(shapeName: ShapeName, column: number, row: number, c
     path: buildPath(shapeName),
     opacity: shadow ? 0.3 : 0.8,
     isShadow: shadow,
-    color: color
+    color: color,
+    collisionPoints: buildCollisionPoints(shapeName)
   })
 }
 
@@ -43,4 +47,15 @@ function buildPath(shapeName: ShapeName) {
   // d = "M 25 1.5 a 23.5 23.5 0 0 0 -23.5 23.5 h 23.5 Z"
 }
 
-export { buildShape, buildShadowShape, buildDisplayShape }
+function buildCollisionPoints(shapeName: ShapeName) {
+  switch (shapeName) {
+    case 'moon':
+      return new Set([CollisionPoint.BottomLeft])
+    case 'arc':
+      return new Set([CollisionPoint.BottomLeft, CollisionPoint.BottomRight, CollisionPoint.TopLeft, CollisionPoint.Center])
+    case 'marquise':
+      return new Set([CollisionPoint.Center, CollisionPoint.TopLeft, CollisionPoint.BottomRight])
+  } 
+}
+
+export { buildShape, buildShadowShape, buildDisplayShape, buildCollisionPoints }
