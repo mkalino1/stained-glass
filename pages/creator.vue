@@ -9,9 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-//TODO: fix broken auto import
-import { buildCollisionPoints } from '~/utils/shape'
-
 //Shapes
 const shapes = ref<Shape[]>([])
 function addShape(column: number, row: number) {
@@ -21,9 +18,15 @@ function addShape(column: number, row: number) {
   }
 }
 function collisionDetected(column: number, row: number) {
-  const collisionPoints = buildCollisionPoints(shapeName.value)
+  const collisionPoints = buildCollisionPoints(shapeName.value, rotationCounter.value)
   const roommates = shapes.value.filter(el => el.row === row && el.column === column)
-  return roommates.some(shape => !collisionPoints.isDisjointFrom(shape.collisionPoints))
+  return roommates.some(shape => !collisionPoints.isDisjointFrom(shape.collisionPoints) || isNeighbouringMoon(collisionPoints, shape))
+}
+function isNeighbouringMoon(currentShapeCollisionPoints: Set<CollisionPoint>, neighbourShape: Shape) {
+  return shapeName.value == 'moon'
+    && neighbourShape.collisionPoints.size == 1
+    && (neighbourShape.collisionPoints.has((currentShapeCollisionPoints.values().next().value! + 1) % 4)
+      || neighbourShape.collisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1) % 4))
 }
 
 //Controls

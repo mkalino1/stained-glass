@@ -1,6 +1,3 @@
-//TODO: fix broken auto import
-import { CollisionPoint } from "./collisionPoint"
-
 function buildShape(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0): Shape {
   return buildShapeInternal(shapeName, column, row, color, rotationCounter)
 }
@@ -22,7 +19,7 @@ function buildShapeInternal(shapeName: ShapeName, column: number, row: number, c
     opacity: shadow ? 0.3 : 0.8,
     isShadow: shadow,
     color: color,
-    collisionPoints: buildCollisionPoints(shapeName)
+    collisionPoints: buildCollisionPoints(shapeName, rotationCounter)
   })
 }
 
@@ -47,14 +44,23 @@ function buildPath(shapeName: ShapeName) {
   // d = "M 25 1.5 a 23.5 23.5 0 0 0 -23.5 23.5 h 23.5 Z"
 }
 
-function buildCollisionPoints(shapeName: ShapeName) {
+function buildCollisionPoints(shapeName: ShapeName, rotationCounter: number): Set<CollisionPoint> {
   switch (shapeName) {
     case 'moon':
-      return new Set([CollisionPoint.BottomLeft])
+      return new Set([(CollisionPoint.BottomLeft + rotationCounter) % 4])
     case 'arc':
-      return new Set([CollisionPoint.BottomLeft, CollisionPoint.BottomRight, CollisionPoint.TopLeft, CollisionPoint.Center])
+      return new Set([
+        (CollisionPoint.BottomLeft + rotationCounter) % 4,
+        (CollisionPoint.BottomRight + rotationCounter) % 4,
+        (CollisionPoint.TopLeft + rotationCounter) % 4,
+        CollisionPoint.Center
+      ])
     case 'marquise':
-      return new Set([CollisionPoint.Center, CollisionPoint.TopLeft, CollisionPoint.BottomRight])
+      return new Set([
+        (CollisionPoint.TopLeft + rotationCounter) % 2,
+        (CollisionPoint.BottomRight + rotationCounter) % 2,
+        CollisionPoint.Center
+      ])
   } 
 }
 
