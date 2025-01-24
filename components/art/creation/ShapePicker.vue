@@ -13,5 +13,5 @@
 </template>
 
 <script lang="ts" setup>
-const shapeName = defineModel()
+const { shapeName } = storeToRefs(useArtControlsStore())
 </script>

@@ -12,28 +12,21 @@
 </template>
 
 <script setup lang="ts">
-const { shapes, rotationCounter, shapeName, color } = defineProps<{
-  shapes: Shape[],
-  resolution: number,
-  rotationCounter: number,
-  shapeName: ShapeName,
-  color: string
-}>()
-defineEmits<{
-  addShape: [column: number, row: number]
-}>()
+const { shapes } = defineProps<{ shapes: Shape[] }>()
+defineEmits<{ addShape: [column: number, row: number] }>()
+const {shapeName, resolution, color, rotationCounter } = storeToRefs(useArtControlsStore())
 
 const shadowShape = ref<Shape | null>()
 const shapesToRender = computed(() => shadowShape.value ? [...shapes, shadowShape.value] : shapes)
-function setShadowShape(column: number, row: number) {
-  shadowShape.value = buildShadowShape(shapeName, column, row, color, rotationCounter)
+function setShadowShape(column: number, row: number) { 
+  shadowShape.value = buildShadowShape(shapeName.value, column, row, color.value, rotationCounter.value)
 }
 function resetShadowShape() {
   shadowShape.value = null
 }
-watch(() => rotationCounter, () => {
+watch(rotationCounter, () => {
   if (shadowShape.value) {
-    shadowShape.value.angle = 90 * (rotationCounter % 4)
+    shadowShape.value.angle = 90 * (rotationCounter.value % 4)
   }
 })
 
