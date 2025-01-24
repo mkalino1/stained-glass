@@ -4,7 +4,7 @@
     <template v-for="column in resolution">
       <svg v-for="row in resolution" @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()"
         :x="110 * row" :y="110 * column">
-        <rect @click="$emit('addShape', column, row)" class="fixed" width="100" height="100" :fill="'#66666620'" />
+        <rect @click="addShape(column, row)" class="fixed" width="100" height="100" :fill="'#66666620'" />
         <Shape v-for="shape in shapesOnTile(column, row)" :shape="shape" />
       </svg>
     </template>
@@ -12,13 +12,15 @@
 </template>
 
 <script setup lang="ts">
-const { shapes } = defineProps<{ shapes: Shape[] }>()
 defineEmits<{ addShape: [column: number, row: number] }>()
-const {shapeName, resolution, color, rotationCounter } = storeToRefs(useArtControlsStore())
+const { shapeName, resolution, color, rotationCounter } = storeToRefs(useArtControlsStore())
+const { shapes } = storeToRefs(useShapesStore())
+const { addShape } = useShapesStore()
 
+// Shadow shape
 const shadowShape = ref<Shape | null>()
-const shapesToRender = computed(() => shadowShape.value ? [...shapes, shadowShape.value] : shapes)
-function setShadowShape(column: number, row: number) { 
+const shapesToRender = computed(() => shadowShape.value ? [...shapes.value, shadowShape.value] : shapes.value)
+function setShadowShape(column: number, row: number) {
   shadowShape.value = buildShadowShape(shapeName.value, column, row, color.value, rotationCounter.value)
 }
 function resetShadowShape() {

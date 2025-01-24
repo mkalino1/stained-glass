@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="flex gap-4 justify-center bg-slate-600 p-4 mb-2">
-      <button @click="$emit('undoHistory')" :disabled="canUndo" class="mr-2">Undo</button>
-      <button @click="$emit('redoHistory')" :disabled="canRedo">Redo</button>
+      <button :disabled="shapesStore.canUndo" class="mr-2" @click="shapesStore.undoHistory">Undo</button>
+      <button :disabled="shapesStore.canRedo" @click="shapesStore.redoHistory">Redo</button>
       <ColorPicker/>
       <ResolutionPicker />
     </div>
@@ -11,6 +11,5 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{ canUndo: boolean, canRedo: boolean }>()
-defineEmits<{ undoHistory: [], redoHistory: [] }>()
+const shapesStore = useShapesStore()
 </script>
