@@ -1,10 +1,12 @@
 export const useShapesStore = defineStore('shapes', () => {
   const { shapeName, color, rotationCounter } = storeToRefs(useArtControlsStore())
   const shapes = ref<Shape[]>([])
+  const id = ref(0)
 
   function addShape(column: number, row: number) {
     if (!collisionDetected(column, row)) {
-      shapes.value.push(buildShape(shapeName.value, column, row, color.value, rotationCounter.value))
+      shapes.value.push(buildShape(shapeName.value, column, row, color.value, rotationCounter.value, id.value))
+      id.value += 1
       pushHistory()
     }
   }

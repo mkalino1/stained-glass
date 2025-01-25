@@ -1,4 +1,5 @@
 type Shape = {
+    id: number;
     column: number;
     row: number;
     angle: number;

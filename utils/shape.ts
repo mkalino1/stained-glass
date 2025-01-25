@@ -1,17 +1,18 @@
-function buildShape(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0): Shape {
-  return buildShapeInternal(shapeName, column, row, color, rotationCounter)
+function buildShape(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter: number, id: number): Shape {
+  return buildShapeInternal(shapeName, column, row, color, rotationCounter, false, id)
 }
 
 function buildShadowShape(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0): Shape {
-  return buildShapeInternal(shapeName, column, row, color, rotationCounter, true)
+  return buildShapeInternal(shapeName, column, row, color, rotationCounter, true, -1)
 }
 
 function buildDisplayShape(shapeName: ShapeName): Shape {
-  return buildShapeInternal(shapeName, 0, 0, '#336633')
+  return buildShapeInternal(shapeName, 0, 0, '#336633', 0, false, -1)
 }
 
-function buildShapeInternal(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter = 0, shadow = false): Shape {
+function buildShapeInternal(shapeName: ShapeName, column: number, row: number, color: string, rotationCounter: number, shadow: boolean, id: number): Shape {
   return ({
+    id: id,
     column: column,
     row: row,
     angle: 90 * (rotationCounter % 4),

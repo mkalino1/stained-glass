@@ -5,8 +5,9 @@
 Unleash your creativity and create stained glass arts. Share them with the world, rate them and browse the community's gems.
 
 ## Tech stack:
-- Nuxt
 - Vue.js
+- Nuxt
+- Pinia
 - TailwindCSS
 - Cloudflare R2 blob storage
 - Cloudflare D1 SQL database
