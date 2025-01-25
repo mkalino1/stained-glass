@@ -1,6 +1,6 @@
 export const useShapesStore = defineStore('shapes', () => {
   const { shapeName, color, rotationCounter } = storeToRefs(useArtControlsStore())
-  const shapes = ref<Shape[]>([])
+  const { shapes, canUndo, canRedo, pushHistory, undoHistory, redoHistory } = useShapeHistory()
   const id = ref(0)
 
   function addShape(column: number, row: number) {
@@ -24,25 +24,6 @@ export const useShapesStore = defineStore('shapes', () => {
       && (neighbourShape.collisionPoints.has((currentShapeCollisionPoints.values().next().value! + 1) % 4)
         || neighbourShape.collisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1) % 4))
   }
-
-  //History
-  const historyIndex = ref(0)
-  const history = shallowReactive<Shape[][]>([[]])
-  function pushHistory() {
-    history.length = ++historyIndex.value
-    history.push(clone(shapes.value))
-  }
-  function undoHistory() {
-    shapes.value = clone(history[--historyIndex.value])
-  }
-  function redoHistory() {
-    shapes.value = clone(history[++historyIndex.value])
-  }
-  function clone(shapes: Shape[]) {
-    return shapes.map((s) => ({ ...s }))
-  }
-  const canUndo = computed(() => historyIndex.value <= 0)
-  const canRedo = computed(() => historyIndex.value >= history.length - 1)
 
   return { shapes, addShape, undoHistory, redoHistory, canUndo, canRedo}
 })
