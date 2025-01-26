@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 defineEmits<{ addShape: [column: number, row: number] }>()
-const { shapeName, resolution, color, rotationCounter } = storeToRefs(useArtControlsStore())
+const { shapeName, resolution, color, rotation } = storeToRefs(useArtControlsStore())
 const { shapes } = storeToRefs(useShapesStore())
 const { addShape } = useShapesStore()
 
@@ -21,14 +21,14 @@ const { addShape } = useShapesStore()
 const shadowShape = ref<Shape | null>()
 const shapesToRender = computed(() => shadowShape.value ? [...shapes.value, shadowShape.value] : shapes.value)
 function setShadowShape(column: number, row: number) {
-  shadowShape.value = buildShadowShape(shapeName.value, column, row, color.value, rotationCounter.value)
+  shadowShape.value = buildShadowShape(shapeName.value, column, row, color.value, rotation.value)
 }
 function resetShadowShape() {
   shadowShape.value = null
 }
-watch(rotationCounter, () => {
+watch(rotation, () => {
   if (shadowShape.value) {
-    shadowShape.value.angle = 90 * (rotationCounter.value % 4)
+    shadowShape.value.angle = 90 * rotation.value
   }
 })
 

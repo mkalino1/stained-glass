@@ -11,6 +11,6 @@
 <script lang="ts" setup>
 const artControlsStore = useArtControlsStore()
 function handleWheel(event: WheelEvent) {
-  artControlsStore.rotationCounter += event.deltaY < 0 ? 1 : -1
+  artControlsStore.rotate(event.deltaY)
 }
 </script>
