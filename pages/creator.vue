@@ -5,6 +5,7 @@
       <ArtDownload />
     </div>
     <ArtCanvas />
+    <DeleteShapeDialog />
   </div>
 </template>
 
