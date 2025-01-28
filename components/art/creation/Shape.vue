@@ -1,7 +1,7 @@
 <template>
-  <path :fill="shape.color" stroke="#123712" stroke-width="5" :d="shape.path"
+  <path :fill="shape.color" stroke="#123712" stroke-width="2" :d="shape.path"
     :style="{
-      'transform-origin': '50px 50px',
+      'transform-origin': '30px 30px',
       'transform': `rotate(${shape.angle}deg)`,
       'opacity': shape.opacity,
       'pointer-events': shape.isShadow ? 'none' : 'auto'

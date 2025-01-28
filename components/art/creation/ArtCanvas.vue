@@ -1,10 +1,10 @@
 <template>
-  <svg id="canvas" :width="110 * resolution + 220" :height="110 * resolution + 220" class="bg-gray-800"
-    xmlns="http://www.w3.org/2000/svg">
+  <svg id="canvas" width="600" height="600" class="bg-gray-800"
+    xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${60 * resolution} ${60 * resolution}`">
     <template v-for="column in resolution" :key="column">
-      <svg v-for="row in resolution" :key="row" :x="110 * row" :y="110 * column"
+      <svg v-for="row in resolution" :key="row" :x="60 * (row-1)" :y="60 * (column-1)"
         @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()">
-        <rect class="fixed" width="100" height="100" :fill="'#66666620'" @click="addShape(column, row)" />
+        <rect class="fixed" :width="60" :height="60" :fill="'#66666620'" @click="addShape(column, row)" />
         <Shape v-for="shape in shapesOnTile(column, row)" :key="shape.id" :shape="shape" />
       </svg>
     </template>
