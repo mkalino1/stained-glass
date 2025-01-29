@@ -1,8 +1,8 @@
 <template>
-  <div class="flex gap-2">
+  <div class="gap-2 grid grid-cols-5">
     <span v-for="presetColor in presetColors" :key="presetColor" :style="{ backgroundColor: presetColor }"
-      class="w-8 h-8 rounded-md border border-slate-400" @click="changeColor(presetColor)" />
-    <input v-model="color" type="color" class="w-8 h-8 rounded-md border border-slate-400">
+      class="w-8 h-8 rounded-lg" @click="changeColor(presetColor)" />
+    <input v-model="color" type="color" class="w-8 h-8 rounded-lg">
   </div>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div class="flex gap-4 justify-center bg-slate-600 p-4 mb-2">
-      <button :disabled="shapesStore.canUndo" class="mr-2" @click="shapesStore.undoHistory">Undo</button>
+  <div class="rounded-md bg-gray-600 p-6 gap-6 flex flex-col">
+    <div class="flex gap-5 justify-center">
+      <button :disabled="shapesStore.canUndo" @click="shapesStore.undoHistory">Undo</button>
       <button :disabled="shapesStore.canRedo" @click="shapesStore.redoHistory">Redo</button>
-      <ColorPicker/>
       <ResolutionPicker />
     </div>
+    <ColorPicker/>
     <ShapePicker/>
   </div>
 </template>

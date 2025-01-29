@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-6 bg-slate-600 p-2">
+  <div class="flex gap-4">
     <svg height="60" width="60">
       <Shape :shape="buildDisplayShape('moon')" @click="shapeName = 'moon'" />
     </svg>

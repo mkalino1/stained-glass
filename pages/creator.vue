@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col items-center gap-8 mt-6" @wheel="handleWheel">
-    <div class="flex items-center">
+  <div class="flex flex-col md:flex-row gap-8 justify-center mt-8" @wheel="handleWheel">
+    <ArtCanvas />
+    <div class="flex flex-col">
       <ArtControls />
       <ArtDownload />
     </div>
-    <ArtCanvas />
     <DeleteShapeDialog />
   </div>
 </template>

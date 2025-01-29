@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen">
+  <div>
     <NuxtRouteAnnouncer />
     <NavBar />
     <NuxtPage />
@@ -8,6 +8,6 @@
 
 <style>
 body {
-  @apply bg-slate-700
+  @apply bg-gray-800
 }
 </style>

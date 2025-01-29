@@ -17,7 +17,7 @@ function buildShapeInternal(shapeName: ShapeName, column: number, row: number, c
     row: row,
     angle: 90 * rotation,
     path: buildPath(shapeName),
-    opacity: shadow ? 0.3 : 0.8,
+    opacity: shadow ? 0.3 : 1,
     isShadow: shadow,
     color: color,
     collisionPoints: buildCollisionPoints(shapeName, rotation)
