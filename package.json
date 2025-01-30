@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^0.7.4",
+    "@nuxthub/core": "^0.8.15",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.9.0",
     "eslint": "^9.17.0",
@@ -20,5 +21,8 @@
     "pinia": "^2.3.1",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "wrangler": "^3.106.0"
   }
 }
