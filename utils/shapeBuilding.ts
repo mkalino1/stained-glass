@@ -33,16 +33,15 @@ function buildPath(shapeName: ShapeName) {
         h -60 Z`
     case 'arc':
       return `
-        M 0,0
-        a 60 60 0 0 1 60 60
-        h -60 Z`
+        M 1,1
+        a 58 58 0 0 1 58 58
+        h -58 Z`
     case 'marquise':
       return `
-        M 0,0
-        a 60 60 0 0 1 60 60
-        a -60 -60 0 0 1 -60 -60 Z`
+        M 1,1
+        a 58 58 0 0 1 58 58
+        a -58 -58 0 0 1 -58 -58 Z`
   }
-  // d = "M 25 1.5 a 23.5 23.5 0 0 0 -23.5 23.5 h 23.5 Z"
 }
 
 function buildCollisionPoints(shapeName: ShapeName, rotation: Rotation): Set<CollisionPoint> {
