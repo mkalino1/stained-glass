@@ -1,5 +1,5 @@
 <template>
-  <button class="px-4 py-1 mt-5 rounded-lg bg-gray-600 mx-auto" @click="saveSvg">Download</button>
+  <button class="px-4 py-1 mt-5 rounded-sm bg-zinc-700 mx-auto" @click="saveSvg">Download</button>
 </template>
 
 <script lang="ts" setup>

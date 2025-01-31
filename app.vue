@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font-mono text-zinc-400 max-w-4xl mx-auto">
     <NuxtRouteAnnouncer />
     <NavBar />
     <NuxtPage />
@@ -8,6 +8,6 @@
 
 <style>
 body {
-  @apply bg-gray-800
+  @apply bg-zinc-900
 }
 </style>

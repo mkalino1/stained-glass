@@ -1,5 +1,8 @@
 <template>
-  <input v-model.number="resolution" type="number" class="w-8 px-1 text-center rounded-md" >
+    <fieldset class="border border-zinc-400 flex gap-4 p-3">
+      <legend class="text-center px-3">Resolution</legend>
+      <input v-model.number="resolution" type="number" class="w-12 px-1 text-center rounded-sm bg-zinc-700" >
+    </fieldset>
 </template>
 
 <script lang="ts" setup>

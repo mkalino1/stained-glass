@@ -1,5 +1,5 @@
 <template>
-  <path :fill="shape.color" stroke="#123712" stroke-width="2" :d="getPath(shape.name)"
+  <path :fill="shape.color" stroke="#27272a" stroke-width="2" :d="getPath(shape.name)"
     :style="{
       'transform-origin': '30px 30px',
       'transform': `rotate(${shape.rotation * 90}deg)`,

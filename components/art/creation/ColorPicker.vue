@@ -1,9 +1,10 @@
 <template>
-  <div class="gap-2 grid grid-cols-5">
+  <fieldset class="border border-zinc-400 p-3 gap-2 grid grid-cols-5">
+    <legend class="text-center px-3">Colors</legend>
     <span v-for="presetColor in presetColors" :key="presetColor" :style="{ backgroundColor: presetColor }"
-      class="w-8 h-8 rounded-lg" @click="changeColor(presetColor)" />
-    <input v-model="color" type="color" class="w-8 h-8 rounded-lg">
-  </div>
+      class="w-8 h-8 rounded-md" @click="changeColor(presetColor)" />
+    <input v-model="color" type="color" class="w-8 h-8 rounded-md bg-zinc-700">
+  </fieldset>
 </template>
 
 <script lang="ts" setup>

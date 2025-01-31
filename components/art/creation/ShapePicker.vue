@@ -1,5 +1,6 @@
 <template>
-  <div class="flex gap-4">
+  <fieldset class="border border-zinc-400 flex gap-4 p-3">
+    <legend class="text-center px-3">Shapes</legend>
     <svg height="60" width="60">
       <Shape :shape="buildDisplayShape('moon')" @click="shapeName = 'moon'" />
     </svg>
@@ -9,7 +10,7 @@
     <svg height="60" width="60">
       <Shape :shape="buildDisplayShape('marquise')" @click="shapeName = 'marquise'" />
     </svg>
-  </div>
+  </fieldset>
 </template>
 
 <script lang="ts" setup>

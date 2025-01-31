@@ -7,7 +7,7 @@ function buildShadowShape(shapeName: ShapeName, column: number, row: number, col
 }
 
 function buildDisplayShape(shapeName: ShapeName): Shape {
-  return buildShapeInternal(shapeName, 0, 0, '#336633', 0, false, -1)
+  return buildShapeInternal(shapeName, 0, 0, '#3f3f46', 0, false, -1)
 }
 
 function buildShapeInternal(shapeName: ShapeName, column: number, row: number, color: string, rotation: Rotation, shadow: boolean, id: number): Shape {
