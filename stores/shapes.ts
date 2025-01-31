@@ -20,15 +20,18 @@ export const useShapesStore = defineStore('shapes', () => {
 
   // Collisions
   function collisionDetected(column: number, row: number) {
-    const collisionPoints = buildCollisionPoints(shapeName.value, rotation.value)
+    const collisionPoints = getCollisionPoints(shapeName.value, rotation.value)
     const roommates = shapes.value.filter(el => el.row === row && el.column === column)
-    return roommates.some(shape => !collisionPoints.isDisjointFrom(shape.collisionPoints) || isNeighbouringMoon(collisionPoints, shape))
+    return roommates.some(neighbour => {
+      const neighbourCollisionPoints = getCollisionPoints(neighbour.name, neighbour.rotation)
+      return !collisionPoints.isDisjointFrom(neighbourCollisionPoints) || isNeighbouringMoon(collisionPoints, neighbourCollisionPoints)
+    })
   }
-  function isNeighbouringMoon(currentShapeCollisionPoints: Set<CollisionPoint>, neighbourShape: Shape) {
+  function isNeighbouringMoon(currentShapeCollisionPoints: Set<CollisionPoint>, neighbourCollisionPoints: Set<CollisionPoint>) {
     return shapeName.value == 'moon'
-      && neighbourShape.collisionPoints.size == 1
-      && (neighbourShape.collisionPoints.has((currentShapeCollisionPoints.values().next().value! + 1 + 4) % 4)
-        || neighbourShape.collisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1 + 4) % 4))
+      && neighbourCollisionPoints.size == 1
+      && (neighbourCollisionPoints.has((currentShapeCollisionPoints.values().next().value! + 1 + 4) % 4)
+        || neighbourCollisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1 + 4) % 4))
   }
 
   return { shapes, canUndo, canRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId}

@@ -15,16 +15,14 @@ function buildShapeInternal(shapeName: ShapeName, column: number, row: number, c
     id: id,
     column: column,
     row: row,
-    angle: 90 * rotation,
-    path: buildPath(shapeName),
-    opacity: shadow ? 0.3 : 1,
-    isShadow: shadow,
+    rotation: rotation,
+    name: shapeName,
     color: color,
-    collisionPoints: buildCollisionPoints(shapeName, rotation)
+    isShadow: shadow,
   })
 }
 
-function buildPath(shapeName: ShapeName) {
+function getPath(shapeName: ShapeName) {
   switch (shapeName) {
     case 'moon':
       return `
@@ -44,7 +42,7 @@ function buildPath(shapeName: ShapeName) {
   }
 }
 
-function buildCollisionPoints(shapeName: ShapeName, rotation: Rotation): Set<CollisionPoint> {
+function getCollisionPoints(shapeName: ShapeName, rotation: Rotation): Set<CollisionPoint> {
   switch (shapeName) {
     case 'moon':
       return new Set([(CollisionPoint.BottomLeft + rotation) % 4])
@@ -64,4 +62,4 @@ function buildCollisionPoints(shapeName: ShapeName, rotation: Rotation): Set<Col
   } 
 }
 
-export { buildShape, buildShadowShape, buildDisplayShape, buildCollisionPoints }
+export { buildShape, buildShadowShape, buildDisplayShape, getPath, getCollisionPoints }

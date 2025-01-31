@@ -2,10 +2,8 @@ type Shape = {
     id: number;
     column: number;
     row: number;
-    angle: number;
-    path: string;
-    opacity: number;
-    isShadow: boolean;
+    rotation: number;
+    name: ShapeName;
     color: string;
-    collisionPoints: Set<CollisionPoint>;
+    isShadow: boolean;
 };

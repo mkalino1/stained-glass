@@ -32,7 +32,7 @@ function resetShadowShape() {
 }
 watch(rotation, () => {
   if (shadowShape.value) {
-    shadowShape.value.angle = 90 * rotation.value
+    shadowShape.value.rotation = rotation.value
   }
 })
 
