@@ -3,6 +3,12 @@
     <NuxtRouteAnnouncer />
     <NavBar />
     <NuxtPage />
+    <Toaster theme="dark" :toast-options="{
+      classes: {
+        toast: 'font-mono bg-zinc-800 text-zinc-400 rounded-md',
+        actionButton: '!bg-zinc-500',
+      }
+    }" />
   </div>
 </template>
 

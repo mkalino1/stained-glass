@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@pinia/nuxt",
     "@nuxthub/core",
+    "vue-sonner/nuxt",
   ],
   devtools: { enabled: true },
   compatibilityDate: "2024-11-01",

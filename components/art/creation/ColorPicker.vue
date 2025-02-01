@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="border border-zinc-400 p-3 gap-2 grid grid-cols-5">
+  <fieldset class="border rounded border-zinc-400 p-3 gap-2 grid grid-cols-5">
     <legend class="text-center px-3">Colors</legend>
     <span v-for="presetColor in presetColors" :key="presetColor" :style="{ backgroundColor: presetColor }"
       class="w-8 h-8 rounded-md" @click="changeColor(presetColor)" />

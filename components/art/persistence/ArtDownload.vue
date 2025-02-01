@@ -1,8 +1,9 @@
 <template>
-  <button class="px-4 py-1 mt-5 rounded-sm bg-zinc-700 mx-auto" @click="saveSvg">Download</button>
+  <button class="px-4 py-1 mt-5 rounded bg-zinc-700 mx-auto" @click="saveSvg">Download</button>
 </template>
 
 <script lang="ts" setup>
+const { $toast } = useNuxtApp()
 function saveSvg() {
   const svgElement = document.getElementById('canvas')
   if (!svgElement) {
@@ -18,5 +19,6 @@ function saveSvg() {
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);
+  $toast.success('Art downloaded')
 }
 </script>

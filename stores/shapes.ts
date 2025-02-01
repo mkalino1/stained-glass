@@ -3,12 +3,15 @@ export const useShapesStore = defineStore('shapes', () => {
   const { shapes, canUndo, canRedo, pushHistory, undoHistory, redoHistory } = useShapeHistory()
   const idAutoIncrement = ref(0)
   const shapeToDeleteId = ref(-1)
+  const { $toast } = useNuxtApp()
 
   function addShape(column: number, row: number) {
     if (!collisionDetected(column, row)) {
       shapes.value.push(buildShape(shapeName.value, column, row, color.value, rotation.value, idAutoIncrement.value))
       idAutoIncrement.value += 1
       pushHistory()
+    } else {
+      $toast.warning('Cannot place this shape here')
     }
   }
 
