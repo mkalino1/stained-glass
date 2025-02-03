@@ -12,7 +12,6 @@ function uploadArt() {
     resolution: controlsStore.resolution,
     shapes: shapesStore.shapes
   }
-  console.log(artObj);
 
   $fetch('/api/upload', {
     method: 'POST',
