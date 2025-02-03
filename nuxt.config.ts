@@ -15,4 +15,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  hub: {
+    database: true
+  }
 })
