@@ -5,5 +5,4 @@ type Shape = {
     rotation: number;
     name: ShapeName;
     color: string;
-    isShadow: boolean;
 };

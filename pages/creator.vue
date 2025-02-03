@@ -4,6 +4,7 @@
     <div class="flex flex-col">
       <ArtControls />
       <ArtDownload />
+      <ArtUpload />
     </div>
     <DeleteShapeDialog />
   </div>

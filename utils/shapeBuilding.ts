@@ -1,24 +1,23 @@
 function buildShape(shapeName: ShapeName, column: number, row: number, color: string, rotation: Rotation, id: number): Shape {
-  return buildShapeInternal(shapeName, column, row, color, rotation, false, id)
+  return buildShapeInternal(shapeName, column, row, color, rotation, id)
 }
 
 function buildShadowShape(shapeName: ShapeName, column: number, row: number, color: string, rotation: Rotation): Shape {
-  return buildShapeInternal(shapeName, column, row, color, rotation, true, -1)
+  return buildShapeInternal(shapeName, column, row, color, rotation, -1)
 }
 
 function buildDisplayShape(shapeName: ShapeName): Shape {
-  return buildShapeInternal(shapeName, 0, 0, '#3f3f46', 0, false, -1)
+  return buildShapeInternal(shapeName, 0, 0, '#3f3f46', 0, 0)
 }
 
-function buildShapeInternal(shapeName: ShapeName, column: number, row: number, color: string, rotation: Rotation, shadow: boolean, id: number): Shape {
+function buildShapeInternal(shapeName: ShapeName, column: number, row: number, color: string, rotation: Rotation, id: number): Shape {
   return ({
     id: id,
     column: column,
     row: row,
     rotation: rotation,
     name: shapeName,
-    color: color,
-    isShadow: shadow,
+    color: color
   })
 }
 
