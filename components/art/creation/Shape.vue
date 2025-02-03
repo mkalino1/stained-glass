@@ -3,8 +3,8 @@
     :style="{
       'transform-origin': '30px 30px',
       'transform': `rotate(${shape.rotation * 90}deg)`,
-      'opacity': shape.isShadow ? 0.3 : 1,
-      'pointer-events': shape.isShadow ? 'none' : 'auto'
+      'opacity': shape.id == -1 ? 0.3 : 1,
+      'pointer-events': shape.id == -1 ? 'none' : 'auto'
     }" @contextmenu.prevent="openDeleteShapeDialog" />
 </template>
 
