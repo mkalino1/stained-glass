@@ -1,5 +1,5 @@
 <template>
-  <button class="px-4 py-1 mt-5 rounded bg-zinc-700 mx-auto" @click="uploadArt">Upload</button>
+  <button class="px-4 py-1 rounded bg-zinc-700" @click="uploadArt">Upload</button>
 </template>
 
 <script lang="ts" setup>

@@ -3,8 +3,10 @@
     <ArtCanvas />
     <div class="flex flex-col">
       <ArtControls />
-      <ArtDownload />
-      <ArtUpload />
+      <div class="flex justify-evenly mt-5">
+        <ArtDownload />
+        <ArtUpload />
+      </div>
     </div>
     <DeleteShapeDialog />
   </div>

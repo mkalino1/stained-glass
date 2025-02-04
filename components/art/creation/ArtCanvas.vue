@@ -9,7 +9,8 @@
         <rect width="1" height="1" x="59" y="0" fill="#09090b" />
         <rect width="1" height="1" x="0" y="59" fill="#09090b" />
         <rect width="60" height="60" :fill="'#66666620'" @click="addShape(column, row)" />
-        <Shape v-for="shape in shapesOnTile(column, row)" :key="shape.id" :shape="shape" />
+        <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" />
+        <Shape v-if="shadowShape && shadowShape.column == column && shadowShape.row == row" :shape="shadowShape" />
       </svg>
     </template>
   </svg>
@@ -21,9 +22,21 @@ const { shapeName, resolution, color, rotation } = storeToRefs(useArtControlsSto
 const { shapes } = storeToRefs(useShapesStore())
 const { addShape } = useShapesStore()
 
+const shapesMap = computed(() => {
+  const shapesMap = new Map<string, Shape[]>()
+  shapes.value.forEach((shape) => {
+    const key = `${shape.column}-${shape.row}`
+    if (shapesMap.has(key)) {
+          shapesMap.get(key)?.push(shape)
+        } else {
+          shapesMap.set(key, [shape])
+        }
+  })
+  return shapesMap
+})
+
 // Shadow shape
 const shadowShape = ref<Shape | null>()
-const shapesToRender = computed(() => shadowShape.value ? [...shapes.value, shadowShape.value] : shapes.value)
 function setShadowShape(column: number, row: number) {
   shadowShape.value = buildShadowShape(shapeName.value, column, row, color.value, rotation.value)
 }
@@ -35,8 +48,4 @@ watch(rotation, () => {
     shadowShape.value.rotation = rotation.value
   }
 })
-
-function shapesOnTile(column: number, row: number) {
-  return shapesToRender.value.filter((el) => el.column === column && el.row == row)
-}
 </script>
