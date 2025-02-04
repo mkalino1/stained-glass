@@ -1,13 +1,12 @@
 export default defineEventHandler(async (event) => {
   const artBody = await readBody(event)
 
-  const insertedArt = await useDrizzle().insert(tables.arts).values({
+  await useDrizzle().insert(tables.arts).values({
     resolution: artBody.resolution,
     shapes: JSON.stringify(artBody.shapes),
-    createdAt: new Date()
+    createdAt: new Date(),
+    location: [event.context.cf?.city, event.context.cf?.country].filter(Boolean).join(', ') || null
   }).returning().get()
-  
-  console.log(`Art with ${insertedArt.shapes.length} shapes inserted`)  
 
   return 'success'
 })

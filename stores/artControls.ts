@@ -1,6 +1,6 @@
 export const useArtControlsStore = defineStore('art-controls', () => {
   const shapeName = ref<ShapeName>('moon')
-  const resolution = ref(5)
+  const resolution = ref(4)
   const color = ref('#b0914d')
   const rotation = ref<Rotation>(Rotation.Angle0)
 

@@ -5,4 +5,5 @@ export const arts = sqliteTable('arts', {
   resolution: integer('resolution').notNull(),
   shapes: text('shapes').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+  location: text('location')
 })

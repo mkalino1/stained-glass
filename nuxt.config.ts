@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@pinia/nuxt",
     "@nuxthub/core",
+    "@vueuse/nuxt",
     "vue-sonner/nuxt",
   ],
   devtools: { enabled: true },
