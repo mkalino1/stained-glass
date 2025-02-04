@@ -13,9 +13,11 @@ function uploadArt() {
     shapes: shapesStore.shapes
   }
 
-  $fetch('/api/upload', {
+  $fetch('/api/gallery', {
     method: 'POST',
     body: artObj
+  }).then(() => {
+    $toast.success('Art uploaded', { description: 'Check gallery' })
   }).catch((error) => {
     $toast.error('Cannot upload art', { description: error.statusMessage })
   })

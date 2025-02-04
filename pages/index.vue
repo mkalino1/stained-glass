@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Here will be a gallery of arts to browse.</h1>
-    <p>This app is under active development. Play with the creator tab for now :)</p>
+    <h1 class="mx-auto mb-8 max-w-2xl text-center">Browse stained glass arts created by the community. Unleash your
+      creativity and build your own in the creator tab. </h1>
+    <ArtGallery />
   </div>
 </template>
