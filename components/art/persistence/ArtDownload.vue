@@ -1,5 +1,8 @@
 <template>
-  <button class="px-4 py-1 rounded bg-zinc-700" @click="saveSvg">Download</button>
+  <button class="px-3 py-1 rounded bg-zinc-700 flex items-center" @click="saveSvg">
+    <Icon name="tabler:download" size="16" class="mr-1"/>
+    Download
+  </button>
 </template>
 
 <script lang="ts" setup>

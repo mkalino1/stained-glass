@@ -1,5 +1,8 @@
 <template>
-  <button class="px-4 py-1 rounded bg-zinc-700" @click="uploadArt">Upload</button>
+  <button class="px-3 py-1 rounded bg-zinc-700 flex items-center" @click="uploadArt">
+    <Icon name="tabler:cloud-upload" size="16" class="mr-1"/>
+    Upload
+  </button>
 </template>
 
 <script lang="ts" setup>
@@ -17,7 +20,8 @@ function uploadArt() {
     method: 'POST',
     body: artObj
   }).then(() => {
-    $toast.success('Art uploaded', { description: 'Check gallery' })
+    $toast.success('Art uploaded', { description: 'Check it in the gallery' })
+    navigateTo('/')
   }).catch((error) => {
     $toast.error('Cannot upload art', { description: error.statusMessage })
   })

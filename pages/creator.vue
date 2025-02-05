@@ -1,7 +1,10 @@
 <template>
-  <div class="flex flex-col md:flex-row gap-8 justify-center mt-8" @wheel="handleWheel">
-    <ArtCanvas />
-    <div class="flex flex-col">
+  <div class="flex flex-col md:flex-row gap-8 justify-center" @wheel="handleWheel">
+    <div class="flex flex-col grow">
+      <ArtCreatorHints />
+      <ArtCanvas />
+    </div>
+    <div class="flex flex-col md:mt-12">
       <ArtControls />
       <div class="flex justify-evenly mt-5">
         <ArtDownload />
