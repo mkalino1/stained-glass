@@ -15,8 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { formatTimeAgo } from '@vueuse/core';
-
 const { shapes, createdAt } = defineProps<{
   id: number,
   resolution: number,
@@ -37,6 +35,5 @@ parsedShapes.forEach((shape) => {
       }
 })
 
-const timeAgo = formatTimeAgo(new Date(createdAt))
-
+const timeAgo = useTimeAgo(new Date(createdAt))
 </script>
