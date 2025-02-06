@@ -1,13 +1,15 @@
 <template>
-  <svg id="canvas" class="bg-zinc-800 cursor-pointer"
-    xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${60 * resolution} ${60 * resolution}`">
+  <svg id="canvas" class="bg-zinc-800 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
+    :viewBox="`0 0 ${60 * resolution} ${60 * resolution}`">
     <template v-for="column in resolution" :key="column">
-      <svg v-for="row in resolution" :key="row" :x="60 * (row-1)" :y="60 * (column-1)"
+      <svg v-for="row in resolution" :key="row" :x="60 * (row - 1)" :y="60 * (column - 1)"
         @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()" @click="addShape(column, row)">
-        <rect width="1" height="1" fill="#09090b" />
-        <rect width="1" height="1" x="59" y="59" fill="#09090b" />
-        <rect width="1" height="1" x="59" y="0" fill="#09090b" />
-        <rect width="1" height="1" x="0" y="59" fill="#09090b" />
+        <template v-if="!isTileFull.get(`${column}-${row}`)">
+          <rect width="1" height="1" fill="#09090b" />
+          <rect width="1" height="1" x="59" y="59" fill="#09090b" />
+          <rect width="1" height="1" x="59" y="0" fill="#09090b" />
+          <rect width="1" height="1" x="0" y="59" fill="#09090b" />
+        </template>
         <rect width="60" height="60" :fill="'#66666620'" />
         <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" />
         <Shape v-if="shadowShape && shadowShape.column == column && shadowShape.row == row" :shape="shadowShape" />
@@ -27,12 +29,23 @@ const shapesMap = computed(() => {
   shapes.value.forEach((shape) => {
     const key = `${shape.column}-${shape.row}`
     if (shapesMap.has(key)) {
-          shapesMap.get(key)?.push(shape)
-        } else {
-          shapesMap.set(key, [shape])
-        }
+      shapesMap.get(key)?.push(shape)
+    } else {
+      shapesMap.set(key, [shape])
+    }
   })
   return shapesMap
+})
+
+const isTileFull = computed(() => {
+  const isTileFull = new Map<string, boolean>()
+  shapesMap.value.forEach((shape, key) => {
+    const isFull = shape.reduce((sum, shape) => 
+      sum + getCollisionPoints(shape.name, shape.rotation).size
+    , 0) === 5
+    isTileFull.set(key, isFull)
+  })
+  return isTileFull
 })
 
 // Shadow shape

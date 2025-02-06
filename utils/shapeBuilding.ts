@@ -54,8 +54,8 @@ function getCollisionPoints(shapeName: ShapeName, rotation: Rotation): Set<Colli
       ])
     case 'marquise':
       return new Set([
-        (CollisionPoint.TopLeft + rotation) % 2,
-        (CollisionPoint.BottomRight + rotation) % 2,
+        (CollisionPoint.TopLeft + rotation) % 4,
+        (CollisionPoint.BottomRight + rotation) % 4,
         CollisionPoint.Center
       ])
   } 
