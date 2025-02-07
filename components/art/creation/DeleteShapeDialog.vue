@@ -15,7 +15,7 @@ function deleteShape() {
   $toast.success('Shape deleted', {
     action: {
       label: 'Undo',
-      onClick: () => shapesStore.canUndo || shapesStore.undoHistory()
+      onClick: () => shapesStore.cantUndo || shapesStore.undoHistory()
     }
   })
 }

@@ -1,6 +1,6 @@
 export const useShapesStore = defineStore('shapes', () => {
   const { shapeName, color, rotation } = storeToRefs(useArtControlsStore())
-  const { shapes, canUndo, canRedo, pushHistory, undoHistory, redoHistory } = useShapeHistory()
+  const { shapes, cantUndo, cantRedo, pushHistory, undoHistory, redoHistory } = useShapeHistory()
   const idAutoIncrement = ref(0)
   const shapeToDeleteId = ref(-1)
   const { $toast } = useNuxtApp()
@@ -37,5 +37,5 @@ export const useShapesStore = defineStore('shapes', () => {
         || neighbourCollisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1 + 4) % 4))
   }
 
-  return { shapes, canUndo, canRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId}
+  return { shapes, cantUndo, cantRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId}
 })

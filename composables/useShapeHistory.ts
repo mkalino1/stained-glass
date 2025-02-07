@@ -3,8 +3,8 @@ export const useShapeHistory = () => {
   const history = shallowReactive<Shape[][]>([[]])
   const historyIndex = ref(0)
   
-  const canUndo = computed(() => historyIndex.value <= 0)
-  const canRedo = computed(() => historyIndex.value >= history.length - 1)
+  const cantUndo = computed(() => historyIndex.value <= 0)
+  const cantRedo = computed(() => historyIndex.value >= history.length - 1)
   
   function pushHistory() {
     history.length = ++historyIndex.value
@@ -23,5 +23,5 @@ export const useShapeHistory = () => {
     return shapes.map((s) => ({ ...s }))
   }
 
-  return {shapes, canUndo, canRedo, pushHistory, undoHistory, redoHistory}
+  return {shapes, cantUndo: readonly(cantUndo), cantRedo: readonly(cantRedo), pushHistory, undoHistory, redoHistory}
 }
