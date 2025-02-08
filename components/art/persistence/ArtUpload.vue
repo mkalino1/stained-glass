@@ -11,6 +11,11 @@ const shapesStore = useShapesStore()
 const { $toast } = useNuxtApp()
 
 function uploadArt() {
+  if (!shapesStore.isCanvasFull) {
+    $toast.error('Finish the art to upload it')
+    return
+  }
+
   const artObj: Art = {
     resolution: controlsStore.resolution,
     shapes: shapesStore.shapes

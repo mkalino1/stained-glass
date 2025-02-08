@@ -4,7 +4,7 @@
     <template v-for="column in resolution" :key="column">
       <svg v-for="row in resolution" :key="row" :x="60 * (row - 1)" :y="60 * (column - 1)"
         @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()" @click="addShape(column, row)">
-        <template v-if="!isTileFull.get(`${column}-${row}`)">
+        <template v-if="!tileFullnessMap.get(`${column}-${row}`)">
           <rect width="1" height="1" fill="#09090b" />
           <rect width="1" height="1" x="59" y="59" fill="#09090b" />
           <rect width="1" height="1" x="59" y="0" fill="#09090b" />
@@ -21,32 +21,8 @@
 <script setup lang="ts">
 defineEmits<{ addShape: [column: number, row: number] }>()
 const { shapeName, resolution, color, rotation } = storeToRefs(useArtControlsStore())
-const { shapes } = storeToRefs(useShapesStore())
+const { shapesMap, tileFullnessMap } = storeToRefs(useShapesStore())
 const { addShape } = useShapesStore()
-
-const shapesMap = computed(() => {
-  const shapesMap = new Map<string, Shape[]>()
-  shapes.value.forEach((shape) => {
-    const key = `${shape.column}-${shape.row}`
-    if (shapesMap.has(key)) {
-      shapesMap.get(key)?.push(shape)
-    } else {
-      shapesMap.set(key, [shape])
-    }
-  })
-  return shapesMap
-})
-
-const isTileFull = computed(() => {
-  const isTileFull = new Map<string, boolean>()
-  shapesMap.value.forEach((shape, key) => {
-    const isFull = shape.reduce((sum, shape) => 
-      sum + getCollisionPoints(shape.name, shape.rotation).size
-    , 0) === 5
-    isTileFull.set(key, isFull)
-  })
-  return isTileFull
-})
 
 // Shadow shape
 const shadowShape = ref<Shape | null>()

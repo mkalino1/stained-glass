@@ -1,5 +1,5 @@
 <template>
-  <button class="px-3 py-1 rounded bg-zinc-700 flex items-center" @click="saveSvg">
+  <button class="px-3 py-1 rounded bg-zinc-700 flex items-center" @click="downloadSvg">
     <Icon name="tabler:download" size="16" class="mr-1"/>
     Download
   </button>
@@ -7,7 +7,13 @@
 
 <script lang="ts" setup>
 const { $toast } = useNuxtApp()
-function saveSvg() {
+const shapesStore = useShapesStore()
+
+function downloadSvg() {
+  if (!shapesStore.isCanvasFull) {
+    $toast.error('Finish the art to download it')
+    return
+  }
   const svgElement = document.getElementById('canvas')
   if (!svgElement) {
     return

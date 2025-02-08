@@ -1,5 +1,5 @@
 export const useShapesStore = defineStore('shapes', () => {
-  const { shapeName, color, rotation } = storeToRefs(useArtControlsStore())
+  const { shapeName, color, rotation, resolution } = storeToRefs(useArtControlsStore())
   const { shapes, cantUndo, cantRedo, pushHistory, undoHistory, redoHistory } = useShapeHistory()
   const idAutoIncrement = ref(0)
   const shapeToDeleteId = ref(-1)
@@ -21,6 +21,39 @@ export const useShapesStore = defineStore('shapes', () => {
     pushHistory()
   }
 
+  const shapesMap = computed(() => {
+    const shapesMap = new Map<string, Shape[]>()
+    shapes.value.forEach((shape) => {
+      const key = `${shape.column}-${shape.row}`
+      if (shapesMap.has(key)) {
+        shapesMap.get(key)?.push(shape)
+      } else {
+        shapesMap.set(key, [shape])
+      }
+    })
+    return shapesMap
+  })
+  
+  const tileFullnessMap = computed(() => {
+    const tileFullness = new Map<string, boolean>()
+    shapesMap.value.forEach((shape, key) => {
+      const isFull = shape.reduce((sum, shape) => 
+        sum + getCollisionPoints(shape.name, shape.rotation).size
+      , 0) === 5
+      tileFullness.set(key, isFull)
+    })
+    return tileFullness
+  })
+
+  const isCanvasFull = computed(() => {
+    if(tileFullnessMap.value.size < resolution.value ** 2) {
+      return false
+    }
+    return [...tileFullnessMap.value.entries()].filter(([key, isFull]) => {
+      return isFull && key.split('-').every(axis => Number(axis) <= resolution.value)
+    }).length === resolution.value ** 2
+  })
+
   // Collisions
   function collisionDetected(column: number, row: number) {
     const collisionPoints = getCollisionPoints(shapeName.value, rotation.value)
@@ -37,5 +70,5 @@ export const useShapesStore = defineStore('shapes', () => {
         || neighbourCollisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1 + 4) % 4))
   }
 
-  return { shapes, cantUndo, cantRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId}
+  return { shapes, shapesMap, tileFullnessMap, isCanvasFull, cantUndo, cantRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId}
 })
