@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     "@nuxthub/core",
     "@vueuse/nuxt",
     "vue-sonner/nuxt",
-    "@nuxt/icon"
+    "@nuxt/icon",
+    "nuxt-auth-utils"
   ],
   devtools: { enabled: true },
   compatibilityDate: "2024-11-01",
