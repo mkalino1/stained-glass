@@ -8,6 +8,7 @@
       </template>
     </svg>
     <div class="flex justify-between">
+      <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="24" class="cursor-pointer" @click="addLike" />
       <p>{{ timeAgo }}</p>
       <p>{{ location }}</p>
     </div>
@@ -15,12 +16,13 @@
 </template>
 
 <script lang="ts" setup>
-const { shapes, createdAt } = defineProps<{
+const { shapes, createdAt, id } = defineProps<{
   id: number,
   resolution: number,
   shapes: string,
   createdAt: string,
-  location: string | null
+  location: string | null,
+  isLiked: boolean
 }>()
 
 const parsedShapes: Shape[] = JSON.parse(shapes)
@@ -34,6 +36,13 @@ parsedShapes.forEach((shape) => {
         shapesMap.set(key, [shape])
       }
 })
+
+async function addLike() {
+  await $fetch('/api/likes', {
+    method: 'POST',
+    body: { artId: id }
+  })
+}
 
 const timeAgo = useTimeAgo(new Date(createdAt))
 </script>

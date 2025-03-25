@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
+import { sqliteTable, text, integer, primaryKey } from 'drizzle-orm/sqlite-core'
 
 export const arts = sqliteTable('arts', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -7,3 +7,10 @@ export const arts = sqliteTable('arts', {
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
   location: text('location')
 })
+
+export const likes = sqliteTable('likes', {
+  artId: integer('art_id').notNull().references(() => arts.id, {onDelete: 'cascade'}),
+  userId: integer('user_id').notNull()
+}, (table) => [
+  primaryKey({ columns: [table.artId, table.userId] })
+])

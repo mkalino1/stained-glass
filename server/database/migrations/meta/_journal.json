@@ -15,6 +15,20 @@
       "when": 1738681644697,
       "tag": "0001_noisy_vance_astro",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1742929392619,
+      "tag": "0002_perfect_gambit",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1742929780574,
+      "tag": "0003_omniscient_norman_osborn",
+      "breakpoints": true
     }
   ]
 }
