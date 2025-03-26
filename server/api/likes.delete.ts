@@ -3,10 +3,10 @@ export default defineEventHandler(async (event) => {
 
   const session = await requireUserSession(event)
 
-  await useDrizzle().insert(tables.likes).values({
-    artId,
-    userId: session.user.id
-  })
-
+  await useDrizzle().delete(tables.likes).where(and(
+    eq(tables.likes.artId, artId),
+    eq(tables.likes.userId, session.user.id)
+  ))
+  
   return 'success'
 })
