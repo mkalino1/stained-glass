@@ -15,6 +15,6 @@ const { data: arts } = useFetch('/api/gallery')
 const { data: likes, refresh } = useFetch('/api/likes')
 
 function isLiked(artId: number): boolean {
-  return likes.value?.some(art => art.artId == artId) || false
+  return likes.value?.arts.some(art => art.artId == artId) || false
 }
 </script>
