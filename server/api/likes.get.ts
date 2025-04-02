@@ -1,6 +1,3 @@
-import { count } from "drizzle-orm"
-// TODO without
-
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
 
@@ -8,7 +5,7 @@ export default defineEventHandler(async (event) => {
     return []
   }
 
-  const arts = await useDrizzle()
+  const personal = await useDrizzle()
     .select({ artId: tables.likes.artId })
     .from(tables.likes)
     .where(eq(tables.likes.userId, session.user.id))
@@ -21,5 +18,5 @@ export default defineEventHandler(async (event) => {
     .from(tables.likes)
     .groupBy(tables.likes.artId)
 
-  return { arts, total }
+  return { personal, total }
 });

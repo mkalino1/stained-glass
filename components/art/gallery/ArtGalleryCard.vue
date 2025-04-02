@@ -7,10 +7,16 @@
         </svg>
       </template>
     </svg>
-    <div class="flex justify-between">
-      <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="24" class="cursor-pointer" @click="addLike" />
-      <p>{{ timeAgo }}</p>
-      <p>{{ location }}</p>
+    <div class="flex justify-between gap-4">
+      <div class="text-sm flex gap-1">
+        <p>{{ likesNumber }}</p>
+        <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="20" class="cursor-pointer" @click="addLike" />
+      </div>
+      <div class="text-sm flex gap-1">
+        <p>{{ location }}</p>
+        <p>|</p>
+        <p>{{ timeAgo }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +30,8 @@ const { shapes, createdAt, id, isLiked } = defineProps<{
   shapes: string,
   createdAt: string,
   location: string | null,
-  isLiked: boolean
+  isLiked: boolean,
+  likesNumber: number
 }>()
 
 const parsedShapes: Shape[] = JSON.parse(shapes)
