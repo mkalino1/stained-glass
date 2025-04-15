@@ -5,7 +5,7 @@
       :key="art.id"
       v-bind="art"
       :is-liked="isLiked(art.id)"
-      @refresh="refresh"
+      @refresh="refreshTotal();refreshPersonal()"
       :likes-number="getTotalLikes(art.id)"
     />
   </div>
@@ -13,13 +13,14 @@
 
 <script lang="ts" setup>
 const { data: arts } = useFetch('/api/gallery')
-const { data: likes, refresh } = useFetch('/api/likes')
+const { data: totalLikes, refresh: refreshTotal } = useFetch('/api/likes/total')
+const { data: personalLikes, refresh: refreshPersonal } = useFetch('/api/likes/personal')
 
-function getTotalLikes(artId: number): number {  
-  return likes.value?.total.find(art => art.artId == artId)?.total || 0
+function getTotalLikes(artId: number): number {
+  return totalLikes.value?.find(art => art.artId == artId)?.total || 0
 }
 
 function isLiked(artId: number): boolean {
-  return likes.value?.personal.some(art => art.artId == artId) || false
+  return personalLikes.value?.some(art => art.artId == artId) || false
 }
 </script>
