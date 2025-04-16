@@ -49,20 +49,12 @@ parsedShapes.forEach((shape) => {
 const { $toast } = useNuxtApp()
 const emit = defineEmits(['refresh'])
 
-
 async function addLike() {
   try {
-    if (isLiked) {
-      await $fetch('/api/likes', {
-        method: 'DELETE',
-        body: { artId: id }
-      })
-    } else {
-      await $fetch('/api/likes', {
-        method: 'POST',
-        body: { artId: id }
-      })
-    }
+    await $fetch('/api/likes', {
+      method: isLiked ? 'DELETE' : 'POST',
+      body: { artId: id }
+    })
     emit('refresh')
   } catch (error) {
     if (error instanceof FetchError && error.statusCode == 401) {
