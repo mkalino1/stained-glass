@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     .from(tables.arts)
     .leftJoin(tables.likes, eq(tables.arts.id, tables.likes.artId))
     .groupBy(tables.arts.id)
-    .orderBy(sortByLikes == 'true' ? desc(count(tables.likes.userId)) : desc(tables.arts.createdAt), desc(tables.arts.createdAt))
+    .orderBy(...(sortByLikes == 'true' ? [desc(count(tables.likes.userId)), desc(tables.arts.createdAt)] : [desc(tables.arts.createdAt)]))
     .all()
   
   return arts

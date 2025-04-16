@@ -1,15 +1,23 @@
-<template> 
-  <input type="checkbox" class="m-2" v-model="sortByLikes" name="sorting"/>
-  <label for="sorting">Sort by likes</label>
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
-    <ArtGalleryCard
-      v-for="art in arts"
-      :key="art.id"
-      v-bind="art"
-      :is-liked="isLiked(art.id)"
-      @refresh="refreshTotal();refreshPersonal()"
-      :likes-number="getTotalLikes(art.id, art.likesCount)"
-    />
+<template>
+  <div>
+    <div class="flex gap-3 mb-4 justify-end">
+      <Switch v-model="sortByLikes">
+        <template #thumb>
+          <Icon :name="sortByLikes ? 'tabler:heart-filled' : 'tabler:calendar'" size="14" class="bg-zinc-100"/>
+        </template>
+      </Switch>
+      Sorting method
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+      <ArtGalleryCard
+        v-for="art in arts"
+        :key="art.id"
+        v-bind="art"
+        :is-liked="isLiked(art.id)"
+        @refresh="refreshTotal();refreshPersonal()"
+        :likes-number="getTotalLikes(art.id, art.likesCount)"
+      />
+    </div>
   </div>
 </template>
 
