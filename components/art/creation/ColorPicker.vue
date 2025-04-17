@@ -1,9 +1,10 @@
 <template>
-  <fieldset class="border rounded border-zinc-400 p-3 gap-2 grid grid-cols-5">
+  <fieldset class="border rounded border-zinc-400 p-4 sm:p-3 gap-10 sm:gap-3 grid grid-cols-5">
     <legend class="text-center px-3">Colors</legend>
     <span v-for="presetColor in presetColors" :key="presetColor" :style="{ backgroundColor: presetColor }"
-      class="w-8 h-8 rounded-md cursor-pointer" @click="changeColor(presetColor)" />
-    <input v-model="color" type="color" class="w-8 h-8 rounded-md bg-zinc-700 cursor-pointer">
+      class="h-10 sm:h-8 rounded cursor-pointer" @click="changeColor(presetColor)" />
+    <input v-model="color" type="color" class="rounded bg-zinc-700 cursor-pointer w-full py-5 sm:py-4 col-span-2"
+      style="background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);">
   </fieldset>
 </template>
 
@@ -15,3 +16,9 @@ function changeColor(newColor: string) {
   color.value = newColor
 }
 </script>
+
+<style scoped>
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+</style>

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="flex gap-3 mb-4 justify-end">
+    <div class="flex gap-3 mb-4 justify-end mr-2 lg:mr-0">
+      Sort by
       <Switch v-model="sortByLikes">
         <template #thumb>
-          <Icon :name="sortByLikes ? 'tabler:heart-filled' : 'tabler:calendar'" size="14" class="bg-zinc-100"/>
+          <Icon :name="sortByLikes ? 'tabler:heart-filled' : 'tabler:calendar'" size="14" class="bg-zinc-600"/>
         </template>
       </Switch>
-      Sorting method
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
       <ArtGalleryCard

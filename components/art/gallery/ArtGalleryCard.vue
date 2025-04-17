@@ -57,7 +57,7 @@ async function addLike() {
     })
     emit('refresh')
   } catch (error) {
-    if (error instanceof FetchError && error.statusCode == 401) {
+    if (error instanceof FetchError) {
       $toast.error('Log in to like arts')
     }
   }
