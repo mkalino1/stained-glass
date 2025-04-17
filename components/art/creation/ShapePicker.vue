@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="border rounded border-zinc-400 flex gap-4 p-3">
+  <fieldset class="border rounded border-zinc-400 flex gap-4 px-3 py-4">
     <legend class="text-center px-3">Shapes</legend>
     <svg height="60" width="60" class="cursor-pointer" @click="shapeName = 'moon'">
       <Shape :shape="buildDisplayShape('moon')" />
