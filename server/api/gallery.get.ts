@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const { sortByLikes } = getQuery(event)
+  const { sortByLikes, offset } = getQuery(event)
 
   const arts = await useDrizzle()
     .select({
@@ -14,7 +14,8 @@ export default defineEventHandler(async (event) => {
     .leftJoin(tables.likes, eq(tables.arts.id, tables.likes.artId))
     .groupBy(tables.arts.id)
     .orderBy(...(sortByLikes == 'true' ? [desc(count(tables.likes.userId)), desc(tables.arts.createdAt)] : [desc(tables.arts.createdAt)]))
-    .all()
+    .limit(12)
+    .offset(Number(offset) || 0)
   
   return arts
 })

@@ -18,17 +18,21 @@
         :likes-number="getTotalLikes(art.id, art.likesCount)"
       />
     </div>
+    <div class="text-center mt-12" ref="visibilityChecker">
+      <div v-if="isAllLoaded">That's all!</div>
+      <div v-else>Loading...</div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 const sortByLikes = ref(false)
-
-const { data: arts } = useFetch('/api/gallery', { query: { sortByLikes }})
+const { data: initialArts } = useFetch('/api/gallery', { query: { sortByLikes }})
+const arts = ref(initialArts)
+const { data: personalLikes, refresh: refreshPersonal } = useFetch('/api/likes/personal')
 const { data: totalLikes, refresh: refreshTotal, status: statusTotal } = useFetch('/api/likes/total', {
   immediate: false
 })
-const { data: personalLikes, refresh: refreshPersonal } = useFetch('/api/likes/personal')
 
 function getTotalLikes(artId: number, initialLikes: number): number {
   if (statusTotal.value == 'success') {
@@ -39,5 +43,31 @@ function getTotalLikes(artId: number, initialLikes: number): number {
 
 function isLiked(artId: number): boolean {
   return personalLikes.value?.some(art => art.artId == artId) || false
+}
+
+const OFFSET = 12
+const visibilityChecker = useTemplateRef<HTMLDivElement>('visibilityChecker')
+const galleryBottomVisible = useElementVisibility(visibilityChecker)
+const currentOffset = ref(OFFSET)
+const isAllLoaded = ref(false)
+
+watch(galleryBottomVisible, (newValue: boolean) => {
+  if (newValue == true && !isAllLoaded.value) {
+    loadMoreArts()
+  }
+})
+
+watch(sortByLikes, () => {
+  isAllLoaded.value = false
+  currentOffset.value = OFFSET
+})
+
+async function loadMoreArts() {
+  const load = await $fetch('/api/gallery', { query: { sortByLikes: sortByLikes.value, offset: currentOffset.value }})
+  if (load.length < OFFSET) {
+    isAllLoaded.value = true
+  }
+  arts.value = arts.value!.concat(load)
+  currentOffset.value += OFFSET
 }
 </script>

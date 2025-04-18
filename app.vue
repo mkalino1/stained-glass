@@ -2,7 +2,7 @@
   <div class="font-mono text-zinc-400 max-w-4xl mx-auto">
     <NuxtRouteAnnouncer />
     <NavBar />
-    <NuxtPage />
+    <NuxtPage class="pb-20"/>
     <Toaster theme="dark" :toast-options="{
       classes: {
         toast: 'font-mono bg-zinc-800 text-zinc-400 rounded-md',
