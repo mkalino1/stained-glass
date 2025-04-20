@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <svg id="canvas" class="bg-zinc-700" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${60 * resolution} ${60 * resolution}`">
+  <div :id="String(id)">
+    <svg class="bg-zinc-700" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${60 * resolution} ${60 * resolution}`">
       <template v-for="column in resolution" :key="column">
         <svg v-for="row in resolution" :key="row" :x="60 * (row - 1)" :y="60 * (column - 1)">
           <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" />

@@ -1,0 +1,11 @@
+<template>
+  <div class="px-40 flex flex-col gap-8 mt-8">
+    <p>
+      Unleash your creativity and build your own stained glass art in the creator tab.
+    </p>
+    <p>
+      This project was built using Vue.js, Nuxt, NuxtHub. Check out the source code.
+    </p>
+    <Faq />
+  </div>
+</template>
