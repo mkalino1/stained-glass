@@ -1,7 +1,7 @@
 export const useArtControlsStore = defineStore('art-controls', () => {
   const shapeName = ref<ShapeName>('moon')
   const resolution = ref(4)
-  const color = ref('#b0914d')
+  const color = ref('#144837')
   const rotation = ref<Rotation>(Rotation.Angle0)
 
   function rotate(deltaY: number) {

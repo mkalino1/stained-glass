@@ -4,12 +4,18 @@ export const useShapesStore = defineStore('shapes', () => {
   const idAutoIncrement = ref(0)
   const shapeToDeleteId = ref(-1)
   const { $toast } = useNuxtApp()
+  const { history: colorHistory, commit: commitColorHistory} = useManualRefHistory(color, {
+    capacity: 9
+  })
 
   function addShape(column: number, row: number) {
     if (!collisionDetected(column, row)) {
       shapes.value.push(buildShape(shapeName.value, column, row, color.value, rotation.value, idAutoIncrement.value))
       idAutoIncrement.value += 1
       pushHistory()
+      if (!colorHistory.value.map(el => el.snapshot).includes(color.value)) {
+        commitColorHistory()
+      }
     } else {
       $toast.warning('Cannot place this shape here')
     }
@@ -70,5 +76,5 @@ export const useShapesStore = defineStore('shapes', () => {
         || neighbourCollisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1 + 4) % 4))
   }
 
-  return { shapes, shapesMap, tileFullnessMap, isCanvasFull, cantUndo, cantRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId}
+  return { shapes, shapesMap, tileFullnessMap, isCanvasFull, cantUndo, cantRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId, colorHistory}
 })
