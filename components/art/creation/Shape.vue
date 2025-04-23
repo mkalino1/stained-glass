@@ -5,14 +5,14 @@
       'transform': `rotate(${shape.rotation * 90}deg)`,
       'opacity': shape.id == -1 ? 0.3 : 1,
       'pointer-events': shape.id == -1 ? 'none' : 'auto'
-    }" @contextmenu.prevent="openDeleteShapeDialog" />
+    }" @contextmenu="chooseShape" />
 </template>
 
 <script lang="ts" setup>
 const { shape } = defineProps<{ shape: Shape }>()
 const shapesStore = useShapesStore()
 
-function openDeleteShapeDialog() {
-  shapesStore.shapeToDeleteId = shape.id
+function chooseShape() {
+  shapesStore.chosenShapeId = shape.id
 }
 </script>

@@ -13,7 +13,7 @@ import {
       focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50
       data-[state=checked]:bg-primary data-[state=unchecked]:bg-input">
     <SwitchThumb
-      class="bg-zinc-200 pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg
+      class="bg-zinc-200 text-zinc-700 pointer-events-none block h-5 w-5 rounded-full shadow-lg
       ring-0 transition-transform data-[state=checked]:translate-x-5">
       <slot name="thumb" />
     </SwitchThumb>

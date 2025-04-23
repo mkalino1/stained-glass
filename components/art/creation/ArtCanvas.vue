@@ -1,5 +1,6 @@
 <template>
-  <svg id="canvas" class="bg-zinc-800 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
+  <ContextMenu>
+    <svg id="canvas" class="bg-zinc-800 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
     :viewBox="`0 0 ${60 * resolution} ${60 * resolution}`">
     <template v-for="column in resolution" :key="column">
       <svg v-for="row in resolution" :key="row" :x="60 * (row - 1)" :y="60 * (column - 1)"
@@ -16,6 +17,7 @@
       </svg>
     </template>
   </svg>
+</ContextMenu>
 </template>
 
 <script setup lang="ts">

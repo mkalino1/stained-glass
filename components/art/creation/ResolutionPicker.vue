@@ -1,7 +1,7 @@
 <template>
     <fieldset class="border rounded border-zinc-400 flex gap-4 p-4">
       <legend class="text-center px-3">Resolution</legend>
-      <Slider v-model="resolutionArray" :max="10" :min="3" :step="1" />
+      <Slider v-model="resolutionArray" :max="10" :min="4" :step="1" />
     </fieldset>
 </template>
 

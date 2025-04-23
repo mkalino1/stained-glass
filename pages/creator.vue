@@ -11,7 +11,6 @@
         <ArtUpload />
       </div>
     </div>
-    <DeleteShapeDialog />
   </div>
 </template>
 

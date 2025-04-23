@@ -28,7 +28,7 @@ function uploadArt() {
     $toast.success('Art uploaded', { description: 'Check it in the gallery' })
     navigateTo('/')
   }).catch((error) => {
-    $toast.error('Cannot upload art', { description: error.statusMessage })
+    $toast.error(`Can't upload art`, { description: error.statusMessage })
   })
 }
 </script>

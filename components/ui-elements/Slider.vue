@@ -10,8 +10,8 @@ const forwarded = useForwardPropsEmits(props, emits)
 
 <template>
   <SliderRoot class="relative flex w-full touch-none select-none items-center pb-5 cursor-pointer" v-bind="forwarded" >
-    <div class="absolute flex justify-between w-full px-2"><span class="border-l-2 border-zinc-800 h-3" v-for="x in 8"></span></div>
-    <div class="absolute flex justify-between w-full top-3 text-zinc-600"><span v-for="x in 8" class="w-5 text-center">{{ x + 2 }}</span></div>
+    <div class="absolute flex justify-between w-full px-2"><span v-for="x in 7" :key="x" class="border-l-2 border-zinc-800 h-3" /></div>
+    <div class="absolute flex justify-between w-full top-3 text-zinc-600"><span v-for="x in 7" :key="x" class="w-5 text-center">{{ x + 3 }}</span></div>
     <SliderTrack class="bg-zinc-800 relative h-1.5 w-full grow overflow-hidden rounded-full">
       <SliderRange class="bg-zinc-600 absolute h-full" />
     </SliderTrack>

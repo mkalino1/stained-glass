@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center gap-6 py-6">
+  <div class="flex justify-center gap-6 py-6 text-lg">
     <NuxtLink to="/" active-class="text-zinc-200">Gallery</NuxtLink>
     <NuxtLink to="/creator" active-class="text-zinc-200">Creator</NuxtLink>
     <NuxtLink to="/about" active-class="text-zinc-200">About</NuxtLink>

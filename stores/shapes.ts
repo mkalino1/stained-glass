@@ -2,7 +2,7 @@ export const useShapesStore = defineStore('shapes', () => {
   const { shapeName, color, rotation, resolution } = storeToRefs(useArtControlsStore())
   const { shapes, cantUndo, cantRedo, pushHistory, undoHistory, redoHistory } = useShapeHistory()
   const idAutoIncrement = ref(0)
-  const shapeToDeleteId = ref(-1)
+  const chosenShapeId = ref(-1)
   const { $toast } = useNuxtApp()
   const { history: colorHistory, commit: commitColorHistory} = useManualRefHistory(color, {
     capacity: 9
@@ -17,13 +17,13 @@ export const useShapesStore = defineStore('shapes', () => {
         commitColorHistory()
       }
     } else {
-      $toast.warning('Cannot place this shape here')
+      $toast.warning(`Can't place this shape here`)
     }
   }
 
   function deleteShape() {
-    shapes.value = shapes.value.filter(shape => shape.id !== shapeToDeleteId.value)
-    shapeToDeleteId.value = -1
+    shapes.value = shapes.value.filter(shape => shape.id !== chosenShapeId.value)
+    chosenShapeId.value = -1
     pushHistory()
   }
 
@@ -76,5 +76,5 @@ export const useShapesStore = defineStore('shapes', () => {
         || neighbourCollisionPoints.has((currentShapeCollisionPoints.values().next().value! - 1 + 4) % 4))
   }
 
-  return { shapes, shapesMap, tileFullnessMap, isCanvasFull, cantUndo, cantRedo, addShape, deleteShape, undoHistory, redoHistory, shapeToDeleteId, colorHistory}
+  return { shapes, shapesMap, tileFullnessMap, isCanvasFull, cantUndo, cantRedo, addShape, deleteShape, undoHistory, redoHistory, pushHistory, chosenShapeId, colorHistory}
 })
