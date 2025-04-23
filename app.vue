@@ -1,12 +1,12 @@
 <template>
   <UApp>
-    <div class="font-mono text-zinc-400 max-w-4xl mx-auto">
+    <div class="text-zinc-400 max-w-4xl mx-auto">
       <NuxtRouteAnnouncer />
       <NavBar />
       <NuxtPage class="pb-20"/>
       <Toaster theme="dark" :toast-options="{
         classes: {
-          toast: 'font-mono bg-zinc-800 text-zinc-400 rounded-md',
+          toast: 'font-mono !bg-zinc-800 text-zinc-400 rounded-md',
           actionButton: '!bg-zinc-500',
         }
       }" />
@@ -16,6 +16,6 @@
 
 <style>
 body {
-  background-color: var(--color-zinc-900)
+  background-color: var(--color-zinc-900);
 }
 </style>

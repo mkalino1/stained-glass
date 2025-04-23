@@ -28,5 +28,8 @@ export default defineNuxtConfig({
   ],
   hub: {
     database: true
+  },
+  ui: {
+    colorMode: false
   }
 })
