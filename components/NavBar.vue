@@ -7,10 +7,12 @@
       <NuxtLink to="/about" active-class="text-zinc-200">About</NuxtLink>
     </div>
     <template v-if="!user">
+      <UButton label="Login" variant="subtle" color="neutral" class="bg-zinc-300">
       <a href="/api/login">Login</a>
+      </UButton>
     </template>
     <template v-else>
-      <UDropdownMenu :items="items" :content="{ align: 'end' }" :ui="{ content: 'min-w-36' }">
+      <UDropdownMenu :items="items" :content="{ align: 'end' }" :ui="{ content: 'min-w-36 bg-zinc-50' }">
         <UAvatar :src="user.avatar" class="cursor-pointer" size="lg"/>
       </UDropdownMenu>
     </template>

@@ -9,7 +9,7 @@
         }"/>
         <div class="grow">
           <USeparator label="Recent" class="mb-2" :ui="{ label: 'text-zinc-400', border: 'border-zinc-500' }" />
-          <div class="gap-3 grid grid-cols-5">
+          <div class="gap-3 grid grid-cols-4 sm:grid-cols-5">
             <span v-for="recentColor in colorHistory" :key="recentColor.timestamp" :style="{ backgroundColor: recentColor.snapshot }"
               class="h-10 sm:h-8 rounded cursor-pointer" @click="changeColor(recentColor.snapshot)" />
           </div>
