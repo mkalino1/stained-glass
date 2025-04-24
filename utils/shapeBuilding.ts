@@ -26,18 +26,40 @@ function getPath(shapeName: ShapeName) {
     case 'moon':
       return `
         M 0,0
-        a 60 60 0 0 0 60 60
-        h -60 Z`
+        a 120 120 0 0 0 120 120
+        h -120 Z`
     case 'arc':
       return `
-        M 1,1
-        a 58 58 0 0 1 58 58
-        h -58 Z`
+        M 0,0
+        a 120 120 0 0 1 120 120
+        h -120 Z`
     case 'marquise':
       return `
-        M 1,1
-        a 58 58 0 0 1 58 58
-        a -58 -58 0 0 1 -58 -58 Z`
+        M 0,0
+        a 120 120 0 0 1 120 120
+        a -120 -120 0 0 1 -120 -120 Z`
+  }
+}
+
+function getCamePaths(shapeName: ShapeName) {
+  switch (shapeName) {
+    case 'moon':
+      return [
+        'M 0,0 a 120 120 0 0 0 120 120',
+        'M 0,120 h 120',
+        'M 0,0 v 120',
+      ]
+    case 'arc':
+      return [
+        'M 0,0 a 120 120 0 0 1 120 120',
+        'M 0,120 h 120',
+        'M 0,0 v 120',
+      ]
+    case 'marquise':
+      return [
+        'M 0,0 a 120 120 0 0 0 120 120',
+        'M 0,0 a 120 120 0 0 1 120 120'
+      ]
   }
 }
 
@@ -61,4 +83,4 @@ function getCollisionPoints(shapeName: ShapeName, rotation: Rotation): Set<Colli
   } 
 }
 
-export { buildShape, buildShadowShape, buildDisplayShape, getPath, getCollisionPoints }
+export { buildShape, buildShadowShape, buildDisplayShape, getPath, getCamePaths, getCollisionPoints }

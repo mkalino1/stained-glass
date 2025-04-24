@@ -8,7 +8,7 @@
     </div>
     <template v-if="!user">
       <UButton label="Login" variant="subtle" color="neutral" class="bg-zinc-300">
-      <a href="/api/login">Login</a>
+        <a href="/api/login">Login</a>
       </UButton>
     </template>
     <template v-else>
