@@ -6,8 +6,8 @@ function buildShadowShape(shapeName: ShapeName, column: number, row: number, col
   return buildShapeInternal(shapeName, column, row, color, rotation, -1)
 }
 
-function buildDisplayShape(shapeName: ShapeName, color: string): Shape {
-  return buildShapeInternal(shapeName, 0, 0, color || '#3f3f46', 0, 0)
+function buildDisplayShape(shapeName: ShapeName, color: string, rotation: Rotation): Shape {
+  return buildShapeInternal(shapeName, 0, 0, color || '#3f3f46', rotation, 0)
 }
 
 function buildShapeInternal(shapeName: ShapeName, column: number, row: number, color: string, rotation: Rotation, id: number): Shape {
