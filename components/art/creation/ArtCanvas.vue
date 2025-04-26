@@ -11,7 +11,7 @@
           <rect width="2" height="2" x="0" y="120" fill="#09090b" />
         </template>
         <rect width="120" height="120" fill="#00000000" />
-        <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" />
+        <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" :cames-visibility="getCamesVisibility(column, row, shape, shapesMap)"/>
         <Shape v-if="shadowShape && shadowShape.column == column && shadowShape.row == row" :shape="shadowShape" />
       </svg>
     </template>

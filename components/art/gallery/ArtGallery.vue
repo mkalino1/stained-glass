@@ -14,8 +14,8 @@
         :key="art.id"
         v-bind="art"
         :is-liked="isLiked(art.id)"
-        @refresh="refreshTotal();refreshPersonal()"
         :likes-number="getTotalLikes(art.id, art.likesCount)"
+        @refresh="refreshTotal();refreshPersonal()"
       />
     </div>
     <div class="text-center mt-12" ref="visibilityChecker">

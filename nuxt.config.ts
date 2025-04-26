@@ -31,5 +31,8 @@ export default defineNuxtConfig({
   },
   ui: {
     colorMode: false
+  },
+  imports: {
+    dirs: ['utils/enums']
   }
 })

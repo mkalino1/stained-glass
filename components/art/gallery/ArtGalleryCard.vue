@@ -6,7 +6,7 @@
       <svg class="bg-zinc-700" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${120 * resolution} ${120 * resolution}`">
         <template v-for="column in resolution" :key="column">
           <svg v-for="row in resolution" :key="row" :x="120 * (row - 1)" :y="120 * (column - 1)">
-            <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" />
+            <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" :cames-visibility="getCamesVisibility(column, row, shape, shapesMap)"/>
           </svg>
         </template>
       </svg>

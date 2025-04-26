@@ -1,8 +1,8 @@
 <template>
   <div class="rounded-md gap-2 flex flex-col">
-    <ResolutionPicker />
     <ColorPicker />
     <ShapePicker />
+    <ResolutionPicker />
     <div class="flex gap-5 justify-center">
       <button :disabled="cantUndo" :class="{ 'text-zinc-500': cantUndo }" @click="undoHistory">Undo</button>
       <button :disabled="cantRedo" :class="{ 'text-zinc-500': cantRedo }" @click="redoHistory">Redo</button>

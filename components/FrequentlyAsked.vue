@@ -14,6 +14,7 @@ import { AccordionRoot, AccordionItem } from 'reka-ui'
 
 const accordionItems = [
   { value: 'item-1', title: 'Do I need to log in?', content: `No. You can browse and create arts without being logged in. You can't however rate arts anonymously.` },
-  { value: 'item-2', title: 'Is my data stored?', content: `Only your github id is stored in the database to make sure you won't be able to rate the same art twice.` }
+  { value: 'item-2', title: 'Is my data stored?', content: `Only your github id is stored in the database to make sure you won't be able to rate the same art twice.` },
+  { value: 'item-3', title: 'Can I use it on mobile?', content: `Yes, creator is available also for mobile users. However it might be more comfortable on desktop.` }
 ]
 </script>

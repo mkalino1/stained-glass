@@ -6,6 +6,6 @@
     <p>
       This project was built using Vue.js, Nuxt, NuxtHub. Check out the source code.
     </p>
-    <Faq />
+    <FrequentlyAsked />
   </div>
 </template>
