@@ -4,11 +4,12 @@
       before:top-0 before:skew-x-[-45deg] before:absolute before:left-[-150%] hover:before:left-[150%]
       hover:before:transition-[left] hover:before:duration-500 hover:before:ease-out">
       <svg class="bg-zinc-700" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${120 * resolution} ${120 * resolution}`">
-        <template v-for="column in resolution" :key="column">
+        <g v-for="column in resolution" :key="column">
           <svg v-for="row in resolution" :key="row" :x="120 * (row - 1)" :y="120 * (column - 1)">
-            <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" :cames-visibility="getCamesVisibility(column, row, shape, shapesMap)"/>
+            <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape"/>
           </svg>
-        </template>
+        </g>
+        <CamesOverlay :resolution="resolution" :shapes-map="shapesMap"/>
       </svg>
     </div>
     <div class="flex justify-between gap-4">

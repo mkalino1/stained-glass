@@ -1,4 +1,5 @@
 const DIRECTIONS = [[-1, 0], [0, 1], [1, 0], [0, -1]]
+const VIEWBOX_PADDING = 4
 
 type LineData = {
   lookoutRotation: Rotation,
@@ -60,4 +61,4 @@ function getLineCameVisibility(line: LineData, column: number, row: number, shap
   return lineCameVisibility
 }
 
-export { getCamesVisibility }
+export { getCamesVisibility, VIEWBOX_PADDING }

@@ -1,22 +1,22 @@
 <template>
   <ContextMenu>
     <svg id="canvas" class="bg-zinc-800 cursor-pointer" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${120 * resolution} ${120 * resolution}`">
-    <template v-for="column in resolution" :key="column">
-      <svg v-for="row in resolution" :key="row" :x="120 * (row - 1)" :y="120 * (column - 1)"
-        @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()" @click="addShape(column, row)">
-        <template v-if="!tileFullnessMap.get(`${column}-${row}`)">
-          <rect width="2" height="2" fill="#09090b" />
-          <rect width="2" height="2" x="120" y="120" fill="#09090b" />
-          <rect width="2" height="2" x="120" y="0" fill="#09090b" />
-          <rect width="2" height="2" x="0" y="120" fill="#09090b" />
-        </template>
-        <rect width="120" height="120" fill="#00000000" />
-        <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" :cames-visibility="getCamesVisibility(column, row, shape, shapesMap)"/>
-        <Shape v-if="shadowShape && shadowShape.column == column && shadowShape.row == row" :shape="shadowShape" />
-      </svg>
-    </template>
-  </svg>
-</ContextMenu>
+      <g v-for="column in resolution" :key="column">
+        <svg v-for="row in resolution" :key="row" :x="120 * (row - 1) - VIEWBOX_PADDING" :y="120 * (column - 1) - VIEWBOX_PADDING"
+          :viewBox="`${-VIEWBOX_PADDING} ${-VIEWBOX_PADDING} ${120 * resolution} ${120 * resolution}`"
+          @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()" @click="addShape(column, row)">
+          <rect width="120" height="120" fill="#00000000" />
+          <GuidingPoints v-if="!tileFullnessMap.get(`${column}-${row}`)" />
+          <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" />
+          <template v-if="shadowShape && shadowShape.column == column && shadowShape.row == row">
+            <Shape :shape="shadowShape" />
+            <Cames :shape="shadowShape" />
+          </template>
+        </svg>
+      </g>
+      <CamesOverlay :resolution="resolution" :shapes-map="shapesMap"/>
+    </svg>
+  </ContextMenu>
 </template>
 
 <script setup lang="ts">
