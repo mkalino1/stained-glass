@@ -3,8 +3,8 @@
     :style="{
       'transform-origin': '60px 60px',
       'transform': `rotate(${shape.rotation * 90}deg)`,
-      'opacity': shape.id == -1 ? 0.3 : 1,
-      'pointer-events': shape.id == -1 ? 'none' : 'auto'
+      'opacity': shape.id == -1 ? 0.35 : 1,
+      'pointer-events': 'none'
     }" @contextmenu="chooseShape" />
 </template>
 

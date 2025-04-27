@@ -3,7 +3,8 @@
     stroke-width="4" stroke-linecap="square" :d="path"
     :style="{
       'transform-origin': '60px 60px',
-      'transform': `rotate(${shape.rotation * 90}deg)`
+      'transform': `rotate(${shape.rotation * 90}deg)`,
+      'pointer-events': 'none'
     }"/>
 </template>
 

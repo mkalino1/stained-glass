@@ -16,8 +16,10 @@ export const useShapesStore = defineStore('shapes', () => {
       if (!colorHistory.value.map(el => el.snapshot).includes(color.value)) {
         commitColorHistory()
       }
+      return true
     } else {
       $toast.warning(`Can't place this shape here`)
+      return false
     }
   }
 

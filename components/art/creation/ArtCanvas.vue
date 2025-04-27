@@ -4,17 +4,14 @@
       <g v-for="column in resolution" :key="column">
         <svg v-for="row in resolution" :key="row" :x="120 * (row - 1) - VIEWBOX_PADDING" :y="120 * (column - 1) - VIEWBOX_PADDING"
           :viewBox="`${-VIEWBOX_PADDING} ${-VIEWBOX_PADDING} ${120 * resolution} ${120 * resolution}`"
-          @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()" @click="addShape(column, row)">
+          @mouseover="setShadowShape(column, row)" @mouseleave="resetShadowShape()" @click="handleTileClick(column, row)">
           <rect width="120" height="120" fill="#00000000" />
           <GuidingPoints v-if="!tileFullnessMap.get(`${column}-${row}`)" />
           <Shape v-for="shape in shapesMap.get(`${column}-${row}`)" :key="shape.id" :shape="shape" />
-          <template v-if="shadowShape && shadowShape.column == column && shadowShape.row == row">
-            <Shape :shape="shadowShape" />
-            <Cames :shape="shadowShape" />
-          </template>
         </svg>
       </g>
       <CamesOverlay :resolution="resolution" :shapes-map="shapesMap"/>
+      <ShadowShapeOverlay v-if="showShadowShape" :shadow-shape="shadowShape" />
     </svg>
   </ContextMenu>
 </template>
@@ -22,12 +19,14 @@
 <script setup lang="ts">
 defineEmits<{ addShape: [column: number, row: number] }>()
 const { shapeName, resolution, color, rotation } = storeToRefs(useArtControlsStore())
-const { shapesMap, tileFullnessMap } = storeToRefs(useShapesStore())
+const { shapesMap, tileFullnessMap, cantRedo } = storeToRefs(useShapesStore())
 const { addShape } = useShapesStore()
 
-const shadowShape = ref<Shape | null>()
+const shadowShape = ref<Shape | null>(null)
+const showShadowShape = ref(false)
 function setShadowShape(column: number, row: number) {
   shadowShape.value = buildShadowShape(shapeName.value, column, row, color.value, rotation.value)
+  showShadowShape.value = true
 }
 function resetShadowShape() {
   shadowShape.value = null
@@ -36,5 +35,16 @@ watch(rotation, () => {
   if (shadowShape.value) {
     shadowShape.value.rotation = rotation.value
   }
+  showShadowShape.value = true
 })
+watch(cantRedo, (newValue) => {
+  if (!newValue) showShadowShape.value = true
+})
+
+function handleTileClick(column: number, row: number) {
+  const shapeAdded = addShape(column, row)
+  if (shapeAdded) {
+    showShadowShape.value = false
+  }
+}
 </script>
