@@ -1,5 +1,7 @@
 <template>
-  <UContextMenu :items="items" :ui="{ content: 'bg-zinc-300', group: 'border-zinc-400' }">
+  <UContextMenu :items="items"
+    :disabled="shapesStore.chosenShapeId == -1"
+    :ui="{ content: 'bg-zinc-300', group: 'border-zinc-400' }">
     <slot />
   </UContextMenu>
 </template>
@@ -47,6 +49,7 @@ function setColor() {
   if (found != undefined) {
     found.color = color.value
     shapesStore.pushHistory()
+    shapesStore.chosenShapeId = -1
   }
 }
 
@@ -56,6 +59,7 @@ function copyColor() {
   const found = shapesStore.shapes.find(shape => shape.id == shapesStore.chosenShapeId)
   if (found != undefined) {
     color.value = found.color
+    shapesStore.chosenShapeId = -1
   }
 }
 

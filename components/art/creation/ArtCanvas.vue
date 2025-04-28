@@ -23,7 +23,7 @@ const { shapesMap, tileFullnessMap, cantRedo } = storeToRefs(useShapesStore())
 const { addShape } = useShapesStore()
 
 const shadowShape = ref<Shape | null>(null)
-const showShadowShape = ref(false)
+const showShadowShape = ref(true)
 function setShadowShape(column: number, row: number) {
   shadowShape.value = buildShadowShape(shapeName.value, column, row, color.value, rotation.value)
   showShadowShape.value = true
@@ -44,7 +44,7 @@ watch(cantRedo, (newValue) => {
 function handleTileClick(column: number, row: number) {
   const shapeAdded = addShape(column, row)
   if (shapeAdded) {
-    showShadowShape.value = false
+    setTimeout(() => showShadowShape.value = false)
   }
 }
 </script>
