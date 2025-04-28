@@ -4,8 +4,21 @@
     <ColorPicker />
     <ResolutionPicker />
     <div class="flex gap-5 justify-center">
-      <button :disabled="cantUndo" :class="{ 'text-zinc-500': cantUndo }" @click="undoHistory">Undo</button>
-      <button :disabled="cantRedo" :class="{ 'text-zinc-500': cantRedo }" @click="redoHistory">Redo</button>
+      <div class="flex items-center gap-2">
+        <button :disabled="cantUndo" :class="{ 'text-zinc-500': cantUndo }" @click="undoHistory">Undo</button>
+        <div class="pointer-coarse:hidden flex gap-1">
+          <UKbd value="ctrl" variant='outline' size="sm" :class="['bg-zinc-800 text-zinc-400 ring-zinc-700', { 'text-zinc-500': cantUndo }]"/>
+          <UKbd value="z" variant='outline' size="sm" :class="['bg-zinc-800 text-zinc-400 ring-zinc-700', { 'text-zinc-500': cantUndo }]"/>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button :disabled="cantRedo" :class="{ 'text-zinc-500': cantRedo }" @click="redoHistory">Redo</button>
+        <div class="pointer-coarse:hidden flex gap-1">
+          <UKbd value="ctrl" variant='outline' size="sm" :class="['bg-zinc-800 text-zinc-400 ring-zinc-700', { 'text-zinc-500': cantRedo }]"/>
+          <UKbd value="x" variant='outline' size="sm" :class="['bg-zinc-800 text-zinc-400 ring-zinc-700', { 'text-zinc-500': cantRedo }]"/>
+        </div>
+      </div>
+      
     </div>
   </div>
 </template>

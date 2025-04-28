@@ -40,6 +40,12 @@ watch(rotation, () => {
 watch(cantRedo, (newValue) => {
   if (!newValue) showShadowShape.value = true
 })
+watch(shapeName, () => {
+  if (shadowShape.value) {
+    shadowShape.value.name = shapeName.value
+  }
+  showShadowShape.value = true
+})
 
 function handleTileClick(column: number, row: number) {
   const shapeAdded = addShape(column, row)

@@ -11,6 +11,6 @@
 <script lang="ts" setup>
 const { shape, camesVisibility } = defineProps<{ shape: Shape, camesVisibility?: boolean[] }>()
 
-const camesBase = getCamePaths(shape.name)
-const camesToDisplay = computed(() => camesVisibility != undefined ? camesBase.filter((_, index) => camesVisibility[index]) : camesBase)
+const camesBase = computed(() => getCamePaths(shape.name))
+const camesToDisplay = computed(() => camesVisibility != undefined ? camesBase.value.filter((_, index) => camesVisibility[index]) : camesBase.value)
 </script>

@@ -5,8 +5,8 @@
       <UColorPicker v-model="color" class="p-3"
         :ui="{ 
           selectorThumb: 'ring-zinc-300',
-          trackThumb: 'ring-zinc-300 size-5 md:size-4',
-          track: 'w-3 md:w-2'
+          trackThumb: 'ring-zinc-300 size-5 pointer-fine:size-4',
+          track: 'w-3 pointer-fine:w-2'
         }"/>
         <div class="grow">
           <USeparator label="Recent" class="mb-2" :ui="{ label: 'text-zinc-400', border: 'border-zinc-500' }" />
