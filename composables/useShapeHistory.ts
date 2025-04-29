@@ -23,5 +23,11 @@ export const useShapeHistory = () => {
     return shapes.map((s) => ({ ...s }))
   }
 
-  return {shapes, cantUndo: readonly(cantUndo), cantRedo: readonly(cantRedo), pushHistory, undoHistory, redoHistory}
+  function resetShapes() {
+    shapes.value = []
+    history.splice(0, history.length)
+    historyIndex.value = 0
+  }
+
+  return {shapes, cantUndo: readonly(cantUndo), cantRedo: readonly(cantRedo), pushHistory, undoHistory, redoHistory, resetShapes}
 }

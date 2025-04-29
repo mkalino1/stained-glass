@@ -16,6 +16,11 @@ function uploadArt() {
     return
   }
 
+  if (!shapesStore.shapes.some(shape => shape.color != shapesStore.shapes[0].color)) {
+    $toast.error('Use at least two different colors')
+    return
+  }
+
   const artObj: Art = {
     resolution: controlsStore.resolution,
     shapes: shapesStore.shapes
@@ -26,6 +31,7 @@ function uploadArt() {
     body: artObj
   }).then(() => {
     $toast.success('Art uploaded', { description: 'Check it in the gallery' })
+    shapesStore.resetShapes()
     navigateTo('/')
   }).catch((error) => {
     $toast.error(`Can't upload art`, { description: error.statusMessage })

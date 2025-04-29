@@ -14,6 +14,12 @@ function downloadSvg() {
     $toast.error('Finish the art to download it')
     return
   }
+
+  if (!shapesStore.shapes.some(shape => shape.color != shapesStore.shapes[0].color)) {
+    $toast.error('Use at least two different colors')
+    return
+  }
+  
   const svgElement = document.getElementById('canvas')
   if (!svgElement) {
     return
