@@ -7,8 +7,8 @@
       <NuxtLink to="/about" active-class="text-zinc-200">About</NuxtLink>
     </div>
     <template v-if="!user">
-      <UButton label="Login" variant="subtle" color="neutral" class="bg-zinc-300">
-        <a href="/api/login">Login</a>
+      <UButton label="Login" variant="subtle" color="neutral" class="bg-zinc-300" @click="openInPopup('/api/login')">
+        Login
       </UButton>
     </template>
     <template v-else>
@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@nuxt/ui'
 
-const { user, clear } = useUserSession()
+const { user, clear, openInPopup } = useUserSession()
 
 const items = ref<DropdownMenuItem[][]>([
   [
