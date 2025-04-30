@@ -13,7 +13,8 @@
             icon: 'lucide:arrow-right',
             variant: 'ghost',
             size: 'xl',
-            color: 'neutral'
+            color: 'neutral',
+            class: 'text-zinc-400'
           }]"
         orientation="horizontal"
       />

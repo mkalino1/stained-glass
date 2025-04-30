@@ -7,9 +7,9 @@
       <NuxtLink to="/about" active-class="text-zinc-200">About</NuxtLink>
     </div>
     <template v-if="!user">
-      <UButton label="Login" variant="subtle" color="neutral" class="bg-zinc-300" @click="openInPopup('/api/login')">
-        Login
-      </UButton>
+      <UTooltip text="Log in using GitHub account">
+        <UButton label="Log in" variant="subtle" color="neutral" class="bg-zinc-300" @click="openInPopup('/api/login')" />
+      </UTooltip>
     </template>
     <template v-else>
       <UDropdownMenu :items="items" :content="{ align: 'end' }" :ui="{ content: 'min-w-36 bg-zinc-50' }">

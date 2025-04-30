@@ -15,7 +15,9 @@
     <div class="flex justify-between gap-4">
       <div class="text-sm flex gap-1">
         <p>{{ likesNumber }}</p>
-        <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="20" class="cursor-pointer" @click="addLike" />
+        <UTooltip :text="isLiked ? 'Unlike this art' : 'Like this art'">
+          <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="20" class="cursor-pointer" @click="addLike" />
+        </UTooltip>
       </div>
       <div class="text-sm flex gap-1">
         <p>{{ location }}</p>

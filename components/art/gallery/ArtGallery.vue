@@ -2,11 +2,13 @@
   <div>
     <div class="flex gap-3 mb-4 justify-end mr-2 lg:mr-0">
       Sort by
-      <Switch v-model="sortByLikes">
-        <template #thumb>
-          <Icon :name="sortByLikes ? 'tabler:heart-filled' : 'tabler:calendar'" size="14" class="bg-zinc-600"/>
-        </template>
-      </Switch>
+      <UTooltip :text="sortByLikes ? 'Sorted by likes' : 'Sorted by date'">
+        <Switch v-model="sortByLikes">
+          <template #thumb>
+            <Icon :name="sortByLikes ? 'tabler:heart-filled' : 'tabler:calendar'" size="14" class="bg-zinc-600"/>
+          </template>
+        </Switch>
+      </UTooltip>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
       <ArtGalleryCard
@@ -18,7 +20,7 @@
         @refresh="refreshTotal();refreshPersonal()"
       />
     </div>
-    <div class="text-center mt-12" ref="visibilityChecker">
+    <div ref="visibilityChecker" class="text-center mt-12">
       <div v-if="isAllLoaded">That's all!</div>
       <div v-else>Loading...</div>
     </div>

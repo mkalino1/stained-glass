@@ -31,9 +31,16 @@ function setShadowShape(column: number, row: number) {
 function resetShadowShape() {
   shadowShape.value = null
 }
+
 watch(rotation, () => {
   if (shadowShape.value) {
     shadowShape.value.rotation = rotation.value
+  }
+  showShadowShape.value = true
+})
+watch(color, () => {
+  if (shadowShape.value) {
+    shadowShape.value.color = color.value
   }
   showShadowShape.value = true
 })
