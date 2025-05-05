@@ -1,5 +1,11 @@
+import { z } from 'zod'
+
+const likePostSchema = z.object({
+  artId: z.number().nonnegative(),
+})
+
 export default defineEventHandler(async (event) => {
-  const { artId } = await readBody(event)
+  const { artId } = await readValidatedBody(event, body => likePostSchema.parse(body))
 
   const session = await requireUserSession(event)
 

@@ -13,13 +13,13 @@
       </svg>
     </div>
     <div class="flex justify-between gap-4">
-      <div class="text-sm flex gap-1">
+      <div class="text-xs flex gap-1">
         <p>{{ likesNumber }}</p>
         <UTooltip :text="isLiked ? 'Unlike this art' : 'Like this art'">
-          <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="20" class="cursor-pointer" @click="addLike" />
+          <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="18" class="cursor-pointer" @click="addLike" />
         </UTooltip>
       </div>
-      <div class="text-sm flex gap-1">
+      <div class="text-xs flex gap-1">
         <p>{{ location }}</p>
         <p>|</p>
         <p>{{ timeAgo }}</p>

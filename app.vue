@@ -1,9 +1,12 @@
 <template>
   <UApp>
-    <div class="text-zinc-400 max-w-4xl mx-auto">
+    <div class="text-zinc-400 max-w-4xl mx-auto min-h-screen flex flex-col">
       <NuxtRouteAnnouncer />
       <NavBar />
-      <NuxtPage class="pb-20 px-1"/>
+      <NuxtPage class="pb-20 px-1 grow"/>
+      <div class="mx-auto w-fit flex items-center gap-1.5">
+        Made with <Icon name="tabler:heart-filled" class="text-red-700"/> by Mateusz Kalinowski
+      </div>
       <Toaster theme="dark" :toast-options="{
         classes: {
           toast: 'font-mono !bg-zinc-800 text-zinc-400 rounded-md',
