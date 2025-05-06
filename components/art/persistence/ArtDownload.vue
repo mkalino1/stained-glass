@@ -39,7 +39,7 @@ function downloadSvg() {
   const svgUrl = URL.createObjectURL(svgBlob);
   const downloadLink = document.createElement("a");
   downloadLink.href = svgUrl;
-  downloadLink.download = `glass-art-${new Date().getHours()}-${new Date().getMinutes()}`;
+  downloadLink.download = `glass-art-${new Date().toISOString().slice(0, 10).split('-').reverse().join('-')}`;
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);

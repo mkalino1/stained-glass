@@ -4,7 +4,7 @@
       Stained glass art creator
     </h2>
     <p>
-      Have fun creating your own arts that resemble stained glass windows.
+      Create your own arts imitating stained glass windows.
       Log in to rate works created by others and together let's choose the best.
     </p>
     <p>

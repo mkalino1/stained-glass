@@ -30,7 +30,7 @@ function uploadArt() {
     method: 'POST',
     body: artObj
   }).then(() => {
-    $toast.success('Art uploaded', { description: 'Check it in the gallery' })
+    $toast.success('Art uploaded', { description: 'Check the gallery' })
     shapesStore.resetShapes()
     navigateTo('/')
   }).catch((error) => {
