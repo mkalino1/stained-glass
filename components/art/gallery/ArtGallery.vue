@@ -28,6 +28,7 @@
 </template>
 
 <script lang="ts" setup>
+const { loggedIn } = useUserSession()
 const sortByLikes = ref(false)
 const { data: initialArts } = useFetch('/api/gallery', { query: { sortByLikes }})
 const arts = ref(initialArts)
@@ -44,8 +45,12 @@ function getTotalLikes(artId: number, initialLikes: number): number {
 }
 
 function isLiked(artId: number): boolean {
-  return personalLikes.value?.some(art => art.artId == artId) || false
+  return (loggedIn.value && personalLikes.value?.some(art => art.artId == artId)) || false
 }
+
+watch(loggedIn, (newValue) => {
+  if (newValue) refreshPersonal()
+})
 
 const OFFSET = 12
 const visibilityChecker = useTemplateRef<HTMLDivElement>('visibilityChecker')
