@@ -6,10 +6,7 @@
     </div>
     <div class="flex flex-col md:mt-12">
       <ArtControls />
-      <div class="flex justify-evenly mt-5">
-        <ArtDownload />
-        <ArtUpload />
-      </div>
+      <PersistenceModal />
     </div>
   </div>
 </template>

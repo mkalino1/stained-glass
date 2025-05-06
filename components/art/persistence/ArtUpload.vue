@@ -1,8 +1,8 @@
 <template>
-  <button class="px-3 py-1 rounded bg-zinc-700 flex items-center" @click="uploadArt">
-    <Icon name="tabler:cloud-upload" size="16" class="mr-1"/>
-    Upload
-  </button>
+  <UTooltip text="Upload your art to the gallery" class="flex">
+    <UButton label="Upload" color="neutral" variant="subtle" size="sm"
+      class="bg-zinc-300 mx-auto" icon="tabler:cloud-upload" @click="uploadArt"/>
+  </UTooltip>
 </template>
 
 <script lang="ts" setup>

@@ -1,8 +1,17 @@
 <template>
-  <button class="px-3 py-1 rounded bg-zinc-700 flex items-center" @click="downloadSvg">
-    <Icon name="tabler:download" size="16" class="mr-1"/>
-    Download
-  </button>
+  <UAlert
+    title="You can also download your art as svg before uploading!"
+    variant="outline"
+    class="bg-zinc-800 text-zinc-300 ring-zinc-700 px-4 md:px-6"
+    :actions="[{
+        onClick: downloadSvg,
+        icon: 'tabler:download',
+        variant: 'ghost',
+        size: 'xl', 
+        color: 'neutral',
+        class: 'text-zinc-400'
+      }]"
+    orientation="horizontal" />  
 </template>
 
 <script lang="ts" setup>

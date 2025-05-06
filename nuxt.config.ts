@@ -15,6 +15,9 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
   compatibilityDate: "2024-11-01",
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
   vite: {
     plugins: [
       tailwindcss(),
