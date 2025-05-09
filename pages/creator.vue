@@ -3,6 +3,7 @@
     <div class="flex flex-col grow">
       <ArtCreatorHints />
       <ArtCanvas />
+      <UndoRedoHints />
     </div>
     <div class="flex flex-col md:mt-12">
       <ArtControls />
