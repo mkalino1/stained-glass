@@ -14,9 +14,9 @@
     </div>
     <div class="flex justify-between gap-4">
       <div class="text-xs flex gap-1">
-        <p>{{ likesNumber }}</p>
+        <p>{{ totalLikes }}</p>
         <UTooltip :text="isLiked ? 'Unlike this art' : 'Like this art'">
-          <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="18" class="cursor-pointer" @click="addLike" />
+          <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="18" class="cursor-pointer" @click="toggleLike" />
         </UTooltip>
       </div>
       <div class="text-xs flex gap-1">
@@ -31,15 +31,30 @@
 <script lang="ts" setup>
 import { FetchError } from 'ofetch'
 
-const { shapes, createdAt, id, isLiked } = defineProps<{
+const { loggedIn } = useUserSession()
+const { shapes, createdAt, id, likesCount, isLikedInitially } = defineProps<{
   id: number,
   resolution: number,
   shapes: string,
   createdAt: string,
   location: string | null,
-  isLiked: boolean,
-  likesNumber: number
+  likesCount: number,
+  isLikedInitially: boolean
 }>()
+
+const justToggledOffsetPersonal = ref(0)
+const justToggledOffsetGlobal = ref(0)
+
+const totalLikes = computed(() => likesCount + justToggledOffsetGlobal.value)
+
+const isLiked = computed(() => {
+  if (!loggedIn.value) return false
+  return isLikedInitially == (justToggledOffsetPersonal.value == 0)
+})
+
+watch(loggedIn, (newValue) => {
+  if(newValue) justToggledOffsetPersonal.value = 0
+})
 
 const parsedShapes: Shape[] = JSON.parse(shapes)
 
@@ -54,15 +69,15 @@ parsedShapes.forEach((shape) => {
 })
 
 const { $toast } = useNuxtApp()
-const emit = defineEmits(['refresh'])
 
-async function addLike() {
+async function toggleLike() {
   try {
     await $fetch('/api/likes', {
-      method: isLiked ? 'DELETE' : 'POST',
+      method: isLiked.value ? 'DELETE' : 'POST',
       body: { artId: id }
     })
-    emit('refresh')
+    justToggledOffsetGlobal.value += isLiked.value ? -1 : 1
+    justToggledOffsetPersonal.value += isLiked.value ? -1 : 1
   } catch (error) {
     if (error instanceof FetchError) {
       $toast.error('Log in to like arts')

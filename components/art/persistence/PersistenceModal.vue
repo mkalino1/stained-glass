@@ -27,6 +27,7 @@
         <UAlert
           v-if="!loggedIn"
           title="You need to log in to link your profile."
+          description="Your progress won't be lost."
           variant="outline"
           class="bg-zinc-800 text-zinc-300 ring-zinc-700 px-4 md:px-6"
           :actions="[{
@@ -37,7 +38,8 @@
               color: 'neutral',
               class: 'text-zinc-400',
             }]"
-          orientation="horizontal" />
+          orientation="horizontal"
+          :ui="{ description: 'text-xs' }" />
         <USeparator class="my-3" :ui="{ border: 'border-zinc-500' }" />
         <ArtUpload class="mx-auto mt-3" />
     </template>

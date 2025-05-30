@@ -15,9 +15,7 @@
         v-for="art in arts"
         :key="art.id"
         v-bind="art"
-        :is-liked="isLiked(art.id)"
-        :likes-number="getTotalLikes(art.id, art.likesCount)"
-        @refresh="refreshTotal();refreshPersonal()"
+        :is-liked-initially="personalLikes?.some(el => el.artId == art.id) || false"
       />
     </div>
     <div ref="visibilityChecker" class="text-center mt-12">
@@ -33,20 +31,6 @@ const sortByLikes = ref(false)
 const { data: initialArts } = useFetch('/api/gallery', { query: { sortByLikes }})
 const arts = ref(initialArts)
 const { data: personalLikes, refresh: refreshPersonal } = useFetch('/api/likes/personal')
-const { data: totalLikes, refresh: refreshTotal, status: statusTotal } = useFetch('/api/likes/total', {
-  immediate: false
-})
-
-function getTotalLikes(artId: number, initialLikes: number): number {
-  if (statusTotal.value == 'success') {
-    return totalLikes.value?.find(art => art.artId == artId)?.total || 0
-  }
-  return initialLikes || 0
-}
-
-function isLiked(artId: number): boolean {
-  return (loggedIn.value && personalLikes.value?.some(art => art.artId == artId)) || false
-}
 
 watch(loggedIn, (newValue) => {
   if (newValue) refreshPersonal()
