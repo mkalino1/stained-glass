@@ -1,11 +1,11 @@
 import { z } from 'zod'
 
 const likeDeleteSchema = z.object({
-  artId: z.number().nonnegative(),
+  artId: z.coerce.number().nonnegative()
 })
 
 export default defineEventHandler(async (event) => {
-  const { artId } = await readValidatedBody(event, body => likeDeleteSchema.parse(body))
+  const { artId } = await getValidatedRouterParams(event, body => likeDeleteSchema.parse(body))
 
   const session = await requireUserSession(event)
 

@@ -72,9 +72,8 @@ const { $toast } = useNuxtApp()
 
 async function toggleLike() {
   try {
-    await $fetch('/api/likes', {
-      method: isLiked.value ? 'DELETE' : 'POST',
-      body: { artId: id }
+    await $fetch(`/api/likes/${id}`, {
+      method: isLiked.value ? 'DELETE' : 'POST'
     })
     justToggledOffsetGlobal.value += isLiked.value ? -1 : 1
     justToggledOffsetPersonal.value += isLiked.value ? -1 : 1
