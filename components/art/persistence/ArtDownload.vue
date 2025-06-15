@@ -1,6 +1,7 @@
 <template>
   <UAlert
-    title="You can also download your art as svg before uploading!"
+    title="Download"
+    description="You can download your art as svg file before uploading"
     variant="outline"
     class="bg-zinc-800 text-zinc-300 ring-zinc-700 px-4 md:px-6"
     :actions="[{
