@@ -17,6 +17,22 @@
   </UApp>
 </template>
 
+<script setup lang="ts">
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+})
+
+useSeoMeta({
+  title: 'Stained Glass Creator',
+  ogTitle: 'Stained Glass Creator',
+  description: 'Create stained glass arts and share them with the world!',
+  ogDescription: 'Create stained glass arts and share them with the world!',
+  twitterCard: 'summary_large_image',
+})
+</script>
+
 <style>
 body {
   background-color: var(--color-zinc-900);
