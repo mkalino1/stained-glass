@@ -5,7 +5,8 @@ export const arts = sqliteTable('arts', {
   resolution: integer('resolution').notNull(),
   shapes: text('shapes').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
-  location: text('location')
+  location: text('location'),
+  author: integer('author')
 })
 
 export const likes = sqliteTable('likes', {

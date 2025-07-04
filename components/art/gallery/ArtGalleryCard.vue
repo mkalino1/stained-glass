@@ -13,17 +13,18 @@
       </svg>
     </div>
     <div class="flex justify-between gap-4">
-      <div class="text-xs flex gap-1">
+      <div class="text-xs flex gap-1 mt-1">
         <p>{{ totalLikes }}</p>
         <UTooltip :text="isLiked ? 'Unlike this art' : 'Like this art'">
           <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="18" class="cursor-pointer" @click="toggleLike" />
         </UTooltip>
       </div>
-      <div class="text-xs flex gap-1">
+      <div class="text-xs flex gap-1 mt-1">
         <p>{{ location }}</p>
         <p>|</p>
         <p>{{ timeAgo }}</p>
       </div>
+      <UAvatar v-if="author" :src="`https://avatars.githubusercontent.com/u/${author}?s=128`" class="cursor-pointer" size="xs"/>
     </div>
   </div>
 </template>
@@ -38,6 +39,7 @@ const { shapes, createdAt, id, likesCount, isLikedInitially } = defineProps<{
   shapes: string,
   createdAt: string,
   location: string | null,
+  author: number | null,
   likesCount: number,
   isLikedInitially: boolean
 }>()

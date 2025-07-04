@@ -13,8 +13,25 @@
 import { AccordionRoot, AccordionItem } from 'reka-ui'
 
 const accordionItems = [
-  { value: 'item-1', title: 'Do I need to log in?', content: `No. You can browse, create and upload arts without being logged in. You can't however rate arts anonymously.` },
-  { value: 'item-2', title: 'Is my data stored?', content: `Only your github id is stored in the database to make sure you won't be able to rate the same art twice.` },
-  { value: 'item-3', title: 'Can I use it on mobile?', content: `Yes, creator is available also for mobile users. However it might be more comfortable on desktop.` }
+  {
+    value: 'item-1',
+    title: 'Do I need to log in?',
+    content: `No. You can browse, create and upload arts without being logged in. You can't however rate arts anonymously.`
+  },
+  {
+    value: 'item-2',
+    title: 'Is my data stored?',
+    content: `Only your GitHub ID is stored in the database to make sure you won't be able to rate the same art twice or when you decide to link your GitHub account to the art.`
+  },
+  {
+    value: 'item-3',
+    title: 'Can I use it on mobile?',
+    content: `Yes, creator fully supports desktops and mobiles. However it might be easier to use on desktop.`
+  },
+  {
+    value: 'item-4',
+    title: 'How does the creator work?',
+    content: `The creator recalculates SVG image in your browser each time you add new shape. Then it stores all data (shapes, colors, rotations...) in the database to be able to render it in the gallery to let other people see your creation.`
+  }
 ]
 </script>

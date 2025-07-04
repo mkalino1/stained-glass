@@ -3,6 +3,7 @@ import type { Rotation } from '~/utils/enums/Rotation'
 
 const artUploadSchema = z.object({
   resolution: z.number().min(4).max(10),
+  isLinked: z.boolean(),
   shapes: z.array(
     z.object({
       id: z.number().nonnegative(),
@@ -28,14 +29,16 @@ const artUploadSchema = z.object({
   })
 
 export default defineEventHandler(async (event) => {
-
-  const artBody = await readValidatedBody(event, body => artUploadSchema.parse(body))  
+  
+  const artBody = await readValidatedBody(event, body => artUploadSchema.parse(body))
+  const session = await getUserSession(event)
 
   await useDrizzle().insert(tables.arts).values({
     resolution: artBody.resolution,
     shapes: JSON.stringify(artBody.shapes),
     createdAt: new Date(),
-    location: [event.context.cf?.city, event.context.cf?.country].filter(Boolean).join(', ') || null
+    location: [event.context.cf?.city, event.context.cf?.country].filter(Boolean).join(', ') || null,
+    author: artBody.isLinked ? session.user?.id || null : null
   }).returning().get()
 
   return 'success'

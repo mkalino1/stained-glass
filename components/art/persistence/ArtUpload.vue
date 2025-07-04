@@ -1,10 +1,17 @@
 <template>
-  <UTooltip text="Upload your art to the gallery" class="flex">
-    <UButton label="Upload" icon="tabler:cloud-upload" @click="uploadArt"/>
-  </UTooltip>
+  <div class="px-4 pt-2">
+    <p class="text-sm text-center">Share your creation with the world!</p>
+    <UTooltip text="Upload your art to the gallery" class="flex mx-auto mt-4" >
+      <UButton label="Upload" icon="tabler:cloud-upload" @click="uploadArt"/>
+    </UTooltip>
+  </div>
 </template>
 
 <script lang="ts" setup>
+const { isGithubLinked } = defineProps<{
+  isGithubLinked: boolean
+}>()
+
 const controlsStore = useArtControlsStore()
 const shapesStore = useShapesStore()
 const { $toast } = useNuxtApp()
@@ -22,7 +29,8 @@ function uploadArt() {
 
   const artObj: Art = {
     resolution: controlsStore.resolution,
-    shapes: shapesStore.shapes
+    shapes: shapesStore.shapes,
+    isLinked: isGithubLinked
   }
 
   $fetch('/api/gallery', {

@@ -1,4 +1,5 @@
 type Art = {
-    resolution: number;
-    shapes: Shape[];
+    resolution: number
+    shapes: Shape[]
+    isLinked: boolean
 }

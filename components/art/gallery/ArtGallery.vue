@@ -10,7 +10,7 @@
         </Switch>
       </UTooltip>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-5">
       <ArtGalleryCard
         v-for="art in arts"
         :key="art.id"

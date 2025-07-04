@@ -1,6 +1,6 @@
 <template>
   <UApp>
-    <div class="text-zinc-400 max-w-4xl mx-auto min-h-screen flex flex-col">
+    <div class="text-zinc-400 max-w-6xl mx-auto min-h-screen flex flex-col">
       <NuxtRouteAnnouncer />
       <NavBar />
       <NuxtPage class="pb-20 px-1 grow"/>

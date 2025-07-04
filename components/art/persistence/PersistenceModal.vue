@@ -25,11 +25,11 @@
           </template>
 
           <template #link>
-            <ArtAccountLink />
+            <ArtAccountLink v-model="isGithubLinked"/>
           </template>
 
           <template #upload>
-            <ArtUpload class="mx-auto mt-3" />
+            <ArtUpload :is-github-linked="isGithubLinked"/>
           </template>
         </UStepper>
 
@@ -67,4 +67,6 @@ const items: StepperItem[] = [
 ]
 
 const stepper = useTemplateRef('stepper')
+
+const isGithubLinked = ref(false)
 </script>

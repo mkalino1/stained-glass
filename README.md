@@ -9,8 +9,9 @@ Unleash your creativity and create stained glass arts. Share them with the world
 - Nuxt
 - Pinia
 - TailwindCSS
+- Nuxt UI
 - Drizzle ORM
+- NuxtHub
 - Cloudflare D1 SQL database
 - Cloudflare Workers
-- NuxtHub
 - VueUse
