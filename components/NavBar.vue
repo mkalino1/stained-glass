@@ -8,11 +8,11 @@
     </div>
     <template v-if="!user">
       <UTooltip text="Log in using GitHub account">
-        <UButton label="Log in" variant="subtle" color="neutral" class="bg-zinc-300" @click="openInPopup('/api/login')" />
+        <UButton label="Log in" variant="soft" @click="openInPopup('/api/login')" />
       </UTooltip>
     </template>
     <template v-else>
-      <UDropdownMenu :items="items" :content="{ align: 'end' }" :ui="{ content: 'min-w-36 bg-zinc-50' }">
+      <UDropdownMenu :items="items" :content="{ align: 'end' }" :ui="{ content: 'min-w-36' }">
         <UAvatar :src="user.avatar" class="cursor-pointer" size="lg"/>
       </UDropdownMenu>
     </template>

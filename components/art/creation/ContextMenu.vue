@@ -1,7 +1,5 @@
 <template>
-  <UContextMenu :items="items"
-    :disabled="shapesStore.chosenShapeId == -1"
-    :ui="{ content: 'bg-zinc-300', group: 'border-zinc-400' }">
+  <UContextMenu :items="items" :disabled="shapesStore.chosenShapeId == -1" >
     <slot />
   </UContextMenu>
 </template>

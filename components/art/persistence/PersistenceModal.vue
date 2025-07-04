@@ -3,24 +3,22 @@
     title="Upload your art"
     color="primary"
     :close="{
-      variant: 'outline',
-      class: 'rounded-full text-zinc-900 border-zinc-900 bg-zinc-300'
+      variant: 'soft',
+      class: 'rounded-full'
     }"
     :ui="{
-      content: 'bg-zinc-800 text-zinc-300 ring-zinc-600',
-      title: 'text-zinc-300 border-zinc-900',
-      header: 'border-zinc-500',
+      title: 'text-zinc-300',
       overlay: 'bg-zinc-700/40'
     }"
   >
     <div class="mx-auto mt-5">
       <UTooltip text="Open upload panel">
-        <UButton label="Upload panel" color="neutral" variant="subtle" class="bg-zinc-300"/>
+        <UButton label="Upload panel" variant="solid"/>
       </UTooltip>
     </div>
 
     <template #body>
-      <div class="w-full">
+      <div class="w-full p-1">
         <UStepper ref="stepper" :items="items" color="primary">
           <template #download>
             <ArtDownload/>
@@ -36,11 +34,11 @@
         </UStepper>
 
         <div class="flex gap-2 justify-between mt-6">
-          <UButton leading-icon="i-lucide-arrow-left" :disabled="!stepper?.hasPrev" @click="stepper?.prev()">
+          <UButton leading-icon="i-lucide-arrow-left" variant="soft" :disabled="!stepper?.hasPrev" @click="stepper?.prev()">
             Prev
           </UButton>
 
-          <UButton trailing-icon="i-lucide-arrow-right" :disabled="!stepper?.hasNext" @click="stepper?.next()">
+          <UButton trailing-icon="i-lucide-arrow-right" variant="soft" :disabled="!stepper?.hasNext" @click="stepper?.next()">
             Next
           </UButton>
         </div>

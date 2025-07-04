@@ -2,15 +2,13 @@
   <UAlert
     title="Download"
     description="You can download your art as svg file before uploading"
-    variant="outline"
-    class="bg-zinc-800 text-zinc-300 ring-zinc-700 px-4 md:px-6"
+    variant="soft"
+    class="text-zinc-300 px-4 md:px-6"
     :actions="[{
         onClick: downloadSvg,
         icon: 'tabler:download',
         variant: 'ghost',
-        size: 'xl', 
-        color: 'neutral',
-        class: 'text-zinc-400'
+        size: 'xl'
       }]"
     orientation="horizontal" />  
 </template>

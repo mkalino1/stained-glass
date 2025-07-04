@@ -1,7 +1,6 @@
 <template>
   <UTooltip text="Upload your art to the gallery" class="flex">
-    <UButton label="Upload" color="neutral" variant="subtle" size="sm"
-      class="bg-zinc-300 mx-auto" icon="tabler:cloud-upload" @click="uploadArt"/>
+    <UButton label="Upload" icon="tabler:cloud-upload" @click="uploadArt"/>
   </UTooltip>
 </template>
 

@@ -32,10 +32,10 @@ export default defineNuxtConfig({
   hub: {
     database: true
   },
-  ui: {
-    colorMode: false
-  },
   imports: {
     dirs: ['utils/enums']
+  },
+  colorMode: {
+    preference: 'dark',
   }
 })

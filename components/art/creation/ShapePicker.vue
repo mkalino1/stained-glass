@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="border rounded border-zinc-400 flex gap-4 px-3 py-4 items-start">
+  <fieldset class="border rounded border-zinc-500 flex gap-4 px-3 py-4 items-start">
     <legend class="text-center px-3">Shape</legend>
     <div v-for="(shape, index) in shapesToDisplay" :key="shape.name" class="grow">
       <svg viewBox="-2 -2 124 124" class="cursor-pointer" @click="shapeName = shape.name">
