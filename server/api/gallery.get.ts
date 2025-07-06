@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
       createdAt: tables.arts.createdAt,
       location: tables.arts.location,
       author: tables.arts.author,
+      authorUrl: tables.arts.authorUrl,
       likesCount: count(tables.likes.userId)
     })
     .from(tables.arts)

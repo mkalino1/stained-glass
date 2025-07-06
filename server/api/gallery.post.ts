@@ -38,7 +38,8 @@ export default defineEventHandler(async (event) => {
     shapes: JSON.stringify(artBody.shapes),
     createdAt: new Date(),
     location: [event.context.cf?.city, event.context.cf?.country].filter(Boolean).join(', ') || null,
-    author: artBody.isLinked ? session.user?.id || null : null
+    author: artBody.isLinked ? session.user?.id || null : null,
+    authorUrl: artBody.isLinked ? session.user?.url || null : null,
   }).returning().get()
 
   return 'success'

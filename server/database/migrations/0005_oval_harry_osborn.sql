@@ -1,0 +1,1 @@
+ALTER TABLE `arts` ADD `author_url` text;

@@ -12,7 +12,7 @@
         <CamesOverlay :resolution="resolution" :shapes-map="shapesMap"/>
       </svg>
     </div>
-    <div class="flex justify-between gap-4">
+    <div class="flex justify-between gap-4 mt-0.5">
       <div class="text-xs flex gap-1 mt-1">
         <p>{{ totalLikes }}</p>
         <UTooltip :text="isLiked ? 'Unlike this art' : 'Like this art'">
@@ -24,7 +24,9 @@
         <p>|</p>
         <p>{{ timeAgo }}</p>
       </div>
-      <UAvatar v-if="author" :src="`https://avatars.githubusercontent.com/u/${author}?s=64`" class="cursor-pointer" size="xs"/>
+      <NuxtLink v-if="author && authorUrl" target="_blank" :to="authorUrl" >
+        <UAvatar :src="`https://avatars.githubusercontent.com/u/${author}?s=64`" class="cursor-pointer" size="xs"/>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -40,6 +42,7 @@ const { shapes, createdAt, id, likesCount, isLikedInitially } = defineProps<{
   createdAt: string,
   location: string | null,
   author: number | null,
+  authorUrl: string | null,
   likesCount: number,
   isLikedInitially: boolean
 }>()

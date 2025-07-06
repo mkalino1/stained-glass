@@ -6,7 +6,8 @@ export const arts = sqliteTable('arts', {
   shapes: text('shapes').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
   location: text('location'),
-  author: integer('author')
+  author: integer('author'),
+  authorUrl: text('author_url')
 })
 
 export const likes = sqliteTable('likes', {
