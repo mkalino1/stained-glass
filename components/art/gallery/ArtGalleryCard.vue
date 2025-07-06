@@ -24,7 +24,7 @@
         <p>|</p>
         <p>{{ timeAgo }}</p>
       </div>
-      <UAvatar v-if="author" :src="`https://avatars.githubusercontent.com/u/${author}?s=128`" class="cursor-pointer" size="xs"/>
+      <UAvatar v-if="author" :src="`https://avatars.githubusercontent.com/u/${author}?s=64`" class="cursor-pointer" size="xs"/>
     </div>
   </div>
 </template>

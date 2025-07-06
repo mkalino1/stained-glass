@@ -13,7 +13,7 @@
     </template>
     <template v-else>
       <UDropdownMenu :items="items" :content="{ align: 'end' }" :ui="{ content: 'min-w-36' }">
-        <UAvatar :src="user.avatar" class="cursor-pointer" size="lg"/>
+        <UAvatar :src="`${user.avatar}&s=128`" class="cursor-pointer" size="lg"/>
       </UDropdownMenu>
     </template>
   </div>

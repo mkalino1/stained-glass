@@ -11,11 +11,9 @@
       overlay: 'bg-zinc-700/40'
     }"
   >
-    <div class="mx-auto mt-5">
-      <UTooltip text="Open upload panel">
-        <UButton label="Upload panel" variant="solid"/>
-      </UTooltip>
-    </div>
+    <UTooltip text="Open upload panel">
+      <UButton label="Upload panel" variant="solid" class="cursor-pointer"/>
+    </UTooltip>
 
     <template #body>
       <div class="w-full p-1">

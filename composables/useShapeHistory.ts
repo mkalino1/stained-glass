@@ -23,9 +23,9 @@ export const useShapeHistory = () => {
     return shapes.map((s) => ({ ...s }))
   }
 
-  function resetShapes() {
+  function resetShapes() {  
     shapes.value = []
-    history.splice(0, history.length)
+    history.length = 1
     historyIndex.value = 0
   }
 

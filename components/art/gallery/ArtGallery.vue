@@ -30,7 +30,7 @@ const { loggedIn } = useUserSession()
 const sortByLikes = ref(false)
 const { data: initialArts } = useFetch('/api/gallery', { query: { sortByLikes }})
 const arts = ref(initialArts)
-const { data: personalLikes, refresh: refreshPersonal } = useFetch('/api/likes/personal')
+const { data: personalLikes, refresh: refreshPersonal } = useFetch('/api/likes/personal', { immediate: loggedIn.value })
 
 watch(loggedIn, (newValue) => {
   if (newValue) refreshPersonal()
