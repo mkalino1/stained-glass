@@ -36,7 +36,7 @@ const items = ref<DropdownMenuItem[][]>([
   ],
   [
     {
-      label: 'GitHub',
+      label: 'GitHub Profile',
       icon: 'lucide:user',
       to: user.value?.url,
       target: '_blank'

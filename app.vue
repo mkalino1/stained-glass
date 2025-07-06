@@ -3,7 +3,7 @@
     <div class="text-zinc-400 max-w-6xl mx-auto min-h-screen flex flex-col">
       <NuxtRouteAnnouncer />
       <NavBar />
-      <NuxtPage class="pb-20 px-1 grow"/>
+      <NuxtPage class="pb-10 px-1 grow"/>
       <div class="mx-auto w-fit flex items-center gap-1.5">
         Made with <Icon name="tabler:heart-filled" class="text-red-700"/> by Mateusz Kalinowski
       </div>
