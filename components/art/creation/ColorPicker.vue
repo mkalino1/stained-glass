@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="border rounded border-zinc-500 p-2">
+  <fieldset class="border rounded border-zinc-600 p-2">
     <legend class="text-center px-3">Color</legend>
     <div class="flex md:flex-col gap-6 md:gap-1">
       <UColorPicker v-model="color" class="p-3"

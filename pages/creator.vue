@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md:flex-row gap-8 justify-center md:px-8" @wheel="handleWheel">
+  <div class="flex flex-col md:flex-row gap-8 justify-center md:px-14" @wheel="handleWheel">
     <div class="flex flex-col grow">
       <ArtCreatorHints />
       <ArtCanvas />

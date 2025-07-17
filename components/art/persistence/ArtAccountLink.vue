@@ -1,8 +1,8 @@
 <template>
   <div class="px-4 pt-2">
     <p class="text-sm">Optionally you can link your GitHub account. It will display your avatar in the gallery under the art and allow others to visit your profile. </p>
-    <USwitch v-model="isGithubLinked" :disabled="!loggedIn" label="Link your GitHub profile"
-      class="my-3 text-sm" :ui="{base: loggedIn && 'cursor-pointer'}"/>
+    <USwitch v-model="isGithubLinked" :disabled="!loggedIn" label="Link your GitHub profile" unchecked-icon="i-lucide-x" checked-icon="i-lucide-check"
+      class="my-3 text-sm" :ui="{ base: loggedIn && 'cursor-pointer' }"/>
     <UAlert
       v-if="!loggedIn"
       title="You need to log in to link your profile."

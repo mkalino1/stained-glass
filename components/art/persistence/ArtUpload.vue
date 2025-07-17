@@ -27,7 +27,7 @@ function uploadArt() {
     return
   }
 
-  const artObj: Art = {
+  const artObj: ArtDto = {
     resolution: controlsStore.resolution,
     shapes: shapesStore.shapes,
     isLinked: isGithubLinked

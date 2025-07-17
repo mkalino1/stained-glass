@@ -1,4 +1,4 @@
-type Art = {
+type ArtDto = {
     resolution: number
     shapes: Shape[]
     isLinked: boolean

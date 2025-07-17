@@ -3,11 +3,7 @@
     <div class="flex gap-3 mb-4 justify-end mr-2 lg:mr-0">
       Sort by
       <UTooltip :text="sortByLikes ? 'Sorted by likes' : 'Sorted by date'">
-        <Switch v-model="sortByLikes">
-          <template #thumb>
-            <Icon :name="sortByLikes ? 'tabler:heart-filled' : 'tabler:calendar'" size="14" class="bg-zinc-600"/>
-          </template>
-        </Switch>
+        <ArtGallerySwitch v-model="sortByLikes" />
       </UTooltip>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-5">
@@ -36,7 +32,7 @@ watch(loggedIn, (newValue) => {
   if (newValue) refreshPersonal()
 })
 
-const OFFSET = 12
+const OFFSET = 16
 const visibilityChecker = useTemplateRef<HTMLDivElement>('visibilityChecker')
 const galleryBottomVisible = useElementVisibility(visibilityChecker)
 const currentOffset = ref(OFFSET)

@@ -1,6 +1,6 @@
 <template>
   <div :id="String(id)">
-    <div class="overflow-hidden relative before:bg-white/[0.04] before:h-full before:w-3/5
+    <div class="overflow-hidden relative before:bg-white/[0.03] before:h-full before:w-3/5
       before:top-0 before:skew-x-[-45deg] before:absolute before:left-[-150%] hover:before:left-[150%]
       hover:before:transition-[left] hover:before:duration-500 hover:before:ease-out">
       <svg class="bg-zinc-700" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${120 * resolution} ${120 * resolution}`">
