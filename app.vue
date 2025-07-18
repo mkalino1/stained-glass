@@ -34,6 +34,10 @@ useSeoMeta({
 </script>
 
 <style>
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
 body {
   background-color: var(--color-zinc-900);
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between py-6 px-2 text-lg">
+  <div class="flex justify-between pt-6 pb-3 px-2 mb-4 text-lg border-b border-zinc-700 border-gradient">
     <div class="w-6"/>
     <div class="flex gap-6">
       <NuxtLink to="/" active-class="text-zinc-200">Gallery</NuxtLink>
@@ -55,3 +55,9 @@ const items = ref<DropdownMenuItem[][]>([
 
 defineShortcuts(extractShortcuts(items.value[1]))
 </script>
+
+<style>
+.border-gradient {
+  border-image: linear-gradient(to left, rgba(0, 0, 0, 0), var(--color-zinc-700), rgba(0, 0, 0, 0)) 1;
+}
+</style>
