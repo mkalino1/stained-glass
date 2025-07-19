@@ -36,12 +36,6 @@ const items = ref<DropdownMenuItem[][]>([
   ],
   [
     {
-      label: 'GitHub Profile',
-      icon: 'lucide:user',
-      to: user.value?.url,
-      target: '_blank'
-    },
-    {
       label: 'Logout',
       icon: 'lucide:log-out',
       kbds: ['ctrl', 'q'],

@@ -13,8 +13,8 @@
       </svg>
       <!-- <div class="absolute bg-amber-300/40 top-0 left-0 w-full h-full"/> -->
     </div>
-    <div class="flex justify-between gap-4 mt-0.5">
-      <div class="text-xs flex gap-1 mt-1">
+    <div class="flex gap-3 mt-0.5">
+      <div class="text-xs flex gap-1 mt-1 grow">
         <p>{{ totalLikes }}</p>
         <UTooltip :text="isLiked ? 'Unlike this art' : 'Like this art'">
           <Icon :name="isLiked ? 'tabler:heart-filled' : 'tabler:heart'" size="18" class="cursor-pointer" @click="toggleLike" />

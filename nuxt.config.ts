@@ -20,9 +20,7 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [ tailwindcss() ]
   },
   components: [
     {
@@ -30,16 +28,12 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  hub: {
-    database: true
-  },
-  imports: {
-    dirs: ['utils/enums']
-  },
-  colorMode: {
-    preference: 'dark',
-  },
-  ogImage: {
-    zeroRuntime: true
+  hub: { database: true },
+  imports: { dirs: ['utils/enums'] },
+  colorMode: { preference: 'dark', },
+  nitro: {
+    experimental: {
+      openAPI: true
+    }
   }
 })
