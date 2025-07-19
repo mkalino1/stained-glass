@@ -27,10 +27,12 @@ useHead({
 useSeoMeta({
   title: 'Stained Glass Creator',
   ogTitle: 'Stained Glass Creator',
-  description: 'Create stained glass arts and share them with the world!',
-  ogDescription: 'Create stained glass arts and share them with the world!',
+  description: 'Create arts and share them with the world!',
+  ogDescription: 'Create arts and share them with the world!',
   twitterCard: 'summary_large_image',
 })
+
+defineOgImageComponent('OgImage')
 </script>
 
 <style>

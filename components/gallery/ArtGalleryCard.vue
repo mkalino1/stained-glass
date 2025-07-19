@@ -11,6 +11,7 @@
         </g>
         <CamesOverlay :resolution="resolution" :shapes-map="shapesMap"/>
       </svg>
+      <!-- <div class="absolute bg-amber-300/40 top-0 left-0 w-full h-full"/> -->
     </div>
     <div class="flex justify-between gap-4 mt-0.5">
       <div class="text-xs flex gap-1 mt-1">

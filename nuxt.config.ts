@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     "vue-sonner/nuxt",
     "@nuxt/icon",
     "nuxt-auth-utils",
-    "@nuxt/ui"
+    "@nuxt/ui",
+    "nuxt-og-image",
   ],
   css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
@@ -37,5 +38,8 @@ export default defineNuxtConfig({
   },
   colorMode: {
     preference: 'dark',
+  },
+  ogImage: {
+    zeroRuntime: true
   }
 })
