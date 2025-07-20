@@ -1,17 +1,30 @@
-# Online stained glass art creator
+### Stained Glass Art Creator 🖌️
 
-:construction: Work in progress :construction:
+Create stained glass artworks by arranging colorful shapes in an intuitive online editor.
+Share your creations with the world, explore a vibrant gallery, and discover top-rated pieces.
 
-Unleash your creativity and create stained glass arts. Share them with the world, rate them and browse the community's gems.
+![Art Gallery](https://raw.githubusercontent.com/mkalino1/stained-glass/refs/heads/main/public/promo.png)
 
-## Tech stack:
-- Vue.js
-- Nuxt
-- Pinia
-- TailwindCSS
-- Nuxt UI
-- Drizzle ORM
-- NuxtHub
-- Cloudflare D1 SQL database
-- Cloudflare Workers
-- VueUse
+### Features
+- 🧩 Design unique artworks by arranging shapes  
+- 🖼️ Browse a gallery of artworks created by others  
+- ❤️ Like your favorite pieces to help them rise to the top  
+- 🔎 Sort artworks by likes or newest additions  
+- 🪪 Link your GitHub profile to the art if you feel proud of your work
+
+### Built with
+- ✨ **Nuxt** — Fullstack framework leveraging **Vue.js** and **Nitro** with SSR
+- 🎨 **TailwindCSS** — Utility-first CSS for rapid styling
+- 💎 **Nuxt UI** — Beautiful, ready-to-use UI components
+- 💾 **Cloudflare D1** — SQL database for storing artworks data
+- ⚗️ **Drizzle** — Type-safe ORM for seamless database access
+- 🔐 **Nuxt Auth Utils** — Secure GitHub login
+- 🍍 **Pinia** — Global state management
+- 🛟 **Zod** — Backend API payload validation
+- 🚀 **NuxtHub** — Effortless deployment on Cloudflare Workers
+- 🛠️ **VueUse** — Collection of handy Vue utilities
+---
+
+### Try it
+
+Check out the app: [glass.nuxt.dev](https://glass.nuxt.dev)

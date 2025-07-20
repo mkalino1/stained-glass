@@ -1,5 +1,5 @@
 <template>
-  <UAccordion :items="items" />
+  <UAccordion :items="items" :ui="{trigger: 'cursor-pointer'}"/>
 </template>
 
 <script setup lang="ts">
@@ -8,19 +8,19 @@ import type { AccordionItem } from '@nuxt/ui'
 const items = ref<AccordionItem[]>([
   {
     label: 'Do I need to log in?',
-    content: `No. You can browse, create and upload arts without being logged in. You can't however rate arts anonymously.`
+    content: `No login is required. You can browse, create, and upload art without logging in. However, only logged in users can rate artworks.`
   },
   {
     label: 'Is my data stored?',
-    content: `Only your GitHub ID is stored in the database to make sure you won't be able to rate the same art twice or when you decide to link your GitHub account to the art.`
+    content: `Only your GitHub ID if you decide to log in. This ensures you can’t rate the same artwork multiple times and allows you to link your GitHub account to your artwork.`
   },
   {
-    label: 'Can I use it on mobile?',
-    content: `Yes, creator fully supports desktops and mobiles. However it might be easier to use on desktop.`
+    label: 'Can I use this on mobile?',
+    content: `Yes! The creator works on both desktop and mobile devices. For the best experience, I recommend using a desktop.`
   },
   {
     label: 'How does the creator work?',
-    content: `The creator recalculates SVG image in your browser each time you add new shape. Then it stores all data (shapes, colors, rotations...) in the database to be able to render it in the gallery to let other people see your creation.`
+    content: `Each time you add a new shape, the creator updates the SVG image in your browser. Then all data such as shapes, colors, and rotations is saved in database, so your artwork can be displayed in the gallery for others to enjoy.`
   }
 ])
 </script>
