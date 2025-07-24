@@ -10,14 +10,14 @@ import type { ContextMenuItem } from '@nuxt/ui'
 const items: ContextMenuItem[][] = [
   [
     {
-      label: 'Copy color',
+      label: 'Copy shape color',
       icon: 'lucide:pipette',
       onSelect() {
         copyColor()
       }
     },
     {
-      label: 'Set color',
+      label: 'Apply selected color',
       icon: 'lucide:paint-bucket',
       onSelect() {
         setColor()
