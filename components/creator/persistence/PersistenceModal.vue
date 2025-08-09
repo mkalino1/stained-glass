@@ -1,6 +1,6 @@
 <template>
   <UModal
-    title="Upload your art"
+    title="Artwork upload panel"
     color="primary"
     :close="{
       variant: 'soft',
@@ -17,7 +17,7 @@
 
     <template #body>
       <div class="w-full p-1">
-        <UStepper ref="stepper" :items="items" color="primary">
+        <UStepper ref="stepper" :items="items" color="primary" :linear="false">
           <template #download>
             <ArtDownload/>
           </template>
