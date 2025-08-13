@@ -11,7 +11,7 @@
       title="Check out the source code!"
       variant="soft"
       icon="lucide:github"
-      class="px-2 md:px-6"
+      class="px-6"
       :actions="[{
           to: 'https://github.com/mkalino1/stained-glass',
           target: '_blank',
