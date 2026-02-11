@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { and, eq } from 'drizzle-orm'
 
 const likeDeleteSchema = z.object({
   artId: z.coerce.number().nonnegative()
@@ -9,9 +10,9 @@ export default defineEventHandler(async (event) => {
 
   const session = await requireUserSession(event)
 
-  await useDrizzle().delete(tables.likes).where(and(
-    eq(tables.likes.artId, artId),
-    eq(tables.likes.userId, session.user.id)
+  await db.delete(schema.likes).where(and(
+    eq(schema.likes.artId, artId),
+    eq(schema.likes.userId, session.user.id)
   ))
   
   return 'success'

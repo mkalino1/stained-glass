@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const session = await requireUserSession(event)
 
-  await useDrizzle().insert(tables.likes).values({
+  await db.insert(schema.likes).values({
     artId,
     userId: session.user.id
   })

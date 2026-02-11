@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
   const artBody = await readValidatedBody(event, body => artUploadSchema.parse(body))
   const session = await getUserSession(event)
 
-  await useDrizzle().insert(tables.arts).values({
+  await db.insert(schema.arts).values({
     resolution: artBody.resolution,
     shapes: JSON.stringify(artBody.shapes),
     createdAt: new Date(),

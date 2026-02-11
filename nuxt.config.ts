@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  hub: { database: true },
+  hub: { db: 'sqlite' },
   imports: { dirs: ['utils/enums'] },
   colorMode: { preference: 'dark', },
   nitro: {

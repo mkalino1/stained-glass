@@ -13,10 +13,11 @@
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.0",
     "@nuxt/eslint": "^0.7.4",
     "@nuxt/icon": "^1.10.3",
     "@nuxt/ui": "^3.1.2",
-    "@nuxthub/core": "^0.8.15",
+    "@nuxthub/core": "^0.10.6",
     "@pinia/nuxt": "^0.9.0",
     "@tailwindcss/vite": "^4.1.4",
     "@unhead/vue": "^2.0.12",
